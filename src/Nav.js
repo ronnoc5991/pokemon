@@ -1,10 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { ReactComponent as PokeBall } from './pokeball.svg'
 
 function Nav() {
     return (
         <nav>
-            <h4>Pokemon</h4>
+            <div className="logo-container">
+                <PokeBall />
+            </div>
             <ul>
                 <Link to="/">
                     <li>Home</li>
