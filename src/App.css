@@ -7,16 +7,20 @@
 
 .App {
   text-align: center;
+  background-color: #FAFAFA;
 }
 
 .main {
   margin-top: 8vh;
+  padding-top: 2vh;
+  background-color: #FAFAFA;
 }
 
 nav {
   position: fixed;
   height: 8vh;
-  background-color: var(--pokemon-red);
+  background-color: white;
+  box-shadow: 0px 0px 5px 1px var(--pokemon-red);
   width: 100vw;
   top: 0;
 }
@@ -57,7 +61,7 @@ nav li {
   height: 100%;
   width: 150px;
   transition: all ease-in-out 300ms;
-  background-color: var(--pokemon-red);
+  background-color: white;
 }
 
 .sliding-rect svg {
@@ -74,4 +78,26 @@ ul:hover svg {
 
 ul:hover .sliding-rect {
   transform: translateX(-150px);
+}
+
+/* MONSTER HOME DISPLAY */
+
+.home {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  justify-content: center;
+  grid-gap: 20px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.monster-home-display {
+  width: 300px;
+  border: 1px solid black;
+  /* margin: 20px; */
+}
+
+.monster-home-display img {
+  height: 200px;
 }

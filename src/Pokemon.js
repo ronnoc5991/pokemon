@@ -1,33 +1,43 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 function Pokemon(props) {
 
-    // const [fetchedPokemon, setFetchedPokemon] = useState([])
+const [monster, setMonster] = useState({})
+const [types, setTypes] = useState([])
 
-    // const numberOfPokemon = 12;
     
-    //   function getPokemon () {
-    //       fetch(`https://pokeapi.co/api/v2/pokemon?limit=${numberOfPokemon}`)
-    //       .then(response => response.json())
-    //       .then(allPokemon => allPokemon.results.map(pokemon => {
-    //           fetch(pokemon.url)
-    //           .then(response => response.json())
-    //           .then(pokemonData => {
-    //             setFetchedPokemon(fetchedPokemon.push(pokemonData))
-    //             console.log(pokemonData)
-    //             })
-    //             .then(data => console.log(fetchedPokemon))
-    //       }))
-    //     //   .then(data => console.log(data))
-    //   }
+      function getDetails () {
+        fetch(props.pokemon.url)
+            .then(response => response.json())
+            .then(data => setMonster(data))
+      }
     
-    //   useEffect(() => {
-    //     getPokemon()
-    //   }, [])
+    useEffect(() => {
+        getDetails()
+    }, [])
+
+    useEffect(() => {
+        if (monster.types) {
+            console.log(monster)
+            getTypes();
+        }
+    }, [monster])
+
+    function getTypes () {
+        let typesArray = [];
+        monster.types.map(type => typesArray.push(type.type.name))
+        setTypes(typesArray);
+    }
 
     return (
-        <div>
-            {`${props.pokemon}`}
+        <div key={ monster.id } className="monster-home-display" >
+            <h1> { props.pokemon.name.toUpperCase() } </h1>
+            <img src={`https://pokeres.bastionbot.org/images/pokemon/${monster.id}.png`} alt=""/>
+            <h3> Height: { monster.height } </h3>
+            <h3> Weight: { monster.weight } </h3>
+            { types.map(type => (
+                <h3>Type: { type } </h3>
+            )) }
         </div>
     )
 }
