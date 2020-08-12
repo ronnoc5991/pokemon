@@ -1,49 +1,77 @@
+:root {
+  --pokemon-yellow: #FFCB05;
+  --pokemon-light-blue: #3D7DCA;
+  --pokemon-dark-blue: #003A70;
+  --pokemon-red: #FF0000;
+}
+
 .App {
   text-align: center;
+}
+
+.main {
+  margin-top: 8vh;
 }
 
 nav {
   position: fixed;
   height: 8vh;
-  background-color: yellow;
+  background-color: var(--pokemon-red);
   width: 100vw;
   top: 0;
+}
+
+.logo-container {
+  height: 100%;
   display: flex;
-  flex-direction: row-reverse;
+  z-index: 3;
+  position: absolute;
+  left: 0;
+  padding-left: 1vw;
+}
+
+.logo-container img {
+  height: 80%;
+  margin: auto;
 }
 
 nav ul {
+  position: absolute;
+  right: 1vw;
+  top: 0;
   display: flex;
-  flex-basis: 20%;
+  align-items: center;
+  width: 150px;
+  height: 8vh;
   justify-content: space-around;
+  margin: 0
 }
 
 nav li {
   list-style-type: none;
 }
 
-.logo-container {
+.sliding-rect {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 10px;
   height: 100%;
+  width: 150px;
+  transition: all ease-in-out 300ms;
+  background-color: var(--pokemon-red);
 }
 
-.logo-container svg {
+.sliding-rect svg {
+  position: absolute;
   height: 100%;
-  transform: translateX(0px) rotate(0);
-  transition: all ease-in-out 200ms;
+  right: 0;
+  transform: rotate(0);
+  transition: all ease-in-out 300ms;
 }
 
-.logo-container:hover svg {
-  transform: translateX(100px) rotate(360deg);
+ul:hover svg {
+  transform: rotate(-400deg);
 }
 
-@keyframes roll-over {
-  0% {
-    transform: translateX(0px) rotate(0);
-  }
-  100%{
-    transform: translateX(100px) rotate(360deg);
-  }
+ul:hover .sliding-rect {
+  transform: translateX(-150px);
 }
