@@ -15,10 +15,6 @@ function Home() {
     getPokemon()
   }, [])
 
-  function logThatShit () {
-    console.log(rawPokemon);
-  }
-
     return (
       <>
         <div className="home main">

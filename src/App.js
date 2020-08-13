@@ -3,7 +3,7 @@ import './App.css';
 import Nav from './Nav'
 import Home from './Home'
 import About from './About'
-import Pokemon from './Pokemon'
+import PokemonDetail from './PokemonDetail'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {
@@ -22,6 +22,11 @@ function App() {
             path="/about" 
             exact 
             component={ About } 
+          />
+          <Route
+            path="/:id"
+            exact
+            component= { PokemonDetail }
           />
         </Switch>
       </div>
