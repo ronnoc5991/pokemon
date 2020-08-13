@@ -32,9 +32,9 @@
 }
 
 .main {
-  margin-top: 8vh;
-  min-height: 92vh;
-  padding-top: 4vh;
+  padding-top: 12vh;
+  min-height: 100vh;
+  box-sizing: border-box;
   padding-bottom: 4vh;
   background-color: #FAFAFA;
 }
@@ -118,16 +118,20 @@ ul:hover .sliding-rect {
 
 .monster-home-display {
   width: 300px;
+  height: 338px;
   box-sizing: border-box;
   border-radius: 50px;
   max-width: 300px;
-  /* display: grid;
-  grid-template-rows: 250px 1fr;
-  justify-content: center; */
+  display: grid;
+  grid-template-rows: 240px 1fr;
+  justify-content: center;
+  align-items: center;
   position: relative;
   transition: all 200ms ease-in-out;
   background-color: white;
   box-shadow: 0 0 6px 3px rgba(0,0,0,0.5);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-style: italic;
 }
 
 .monster-home-display:hover {
@@ -135,9 +139,116 @@ ul:hover .sliding-rect {
   box-shadow: 0 0 8px 5px rgba(0,0,0,0.5);
 }
 
+.monster-home-display svg {
+  height: 100px;
+  margin: auto;
+}
+
 .monster-home-display img {
   position: relative;
   height: 250px;
   top: -10px;
   filter: drop-shadow(12px 12px 7px rgba(0,0,0,0.5));
+}
+
+a {
+  all: unset;
+  cursor: pointer;
+}
+
+a:visited {
+  all:unset;
+  color: black;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-image-container {
+  
+}
+
+.detail-image-container img {
+  width: 300px;
+}
+
+.base-stats {
+  margin: auto;
+  width: 300px;
+  height: 250px;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.header {
+  grid-row: 1 / 2;
+}
+
+.header h4 {
+  margin: 0;
+}
+
+.stat {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+}
+
+.label {
+  grid-column: 1 / 2;
+}
+
+.stats-bar {
+  width: 90%;
+  margin-left: 5%;
+  border: 1px solid black;
+  border-radius: 50px;
+}
+
+.filled {
+  border-radius: 50px;
+}
+
+.hp-container {
+  grid-row: 2 / 3;
+}
+
+.hp-bar {
+  background-color: red;
+}
+
+.attack-container {
+  grid-row: 3 / 4;
+}
+
+.attack-bar {
+  background-color: gold;
+}
+
+.defense-container {
+  grid-row: 4 / 5;
+}
+
+.defense-bar {
+  background-color: cyan;
+}
+
+.speed-container {
+  grid-row: 5 / 6;
+}
+
+.speed-bar {
+  background-color: steelblue;
+}
+
+.exp-container {
+  grid-row: 6 / 7;
+}
+
+.exp-bar {
+  background-color: green;
 }

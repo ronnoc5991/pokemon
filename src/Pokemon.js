@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { ReactComponent as PokeBall } from './pokeball.svg'
 
 function Pokemon(props) {
 
@@ -33,10 +34,17 @@ const [isLoading, setIsLoading] = useState(false)
         setIsLoading(false);
     }
 
+    var STYLES = { 
+        // backgroundColor: `var(--type-${types[0]})`,
+        boxShadow: `0px 0px 10px 5px var(--type-${types[0]})`
+        // border: `2px solid var(--type-${types[0]})`
+    }
+     
+
     return (
         <Link to={ `/${monster.id}` } >
-            <div key={ monster.id } className="monster-home-display" >
-                { isLoading ? <h1>Loading</h1> : <img src={`https://pokeres.bastionbot.org/images/pokemon/${monster.id}.png`} alt=""/> }
+            <div key={ monster.id } style={STYLES} className="monster-home-display" >
+                { isLoading ? <PokeBall /> : <img src={`https://pokeres.bastionbot.org/images/pokemon/${monster.id}.png`} alt=""/> }
                 {/* <img src={`https://pokeres.bastionbot.org/images/pokemon/${monster.id}.png`} alt=""/> */}
                 <h1> { props.pokemon.name.charAt(0).toUpperCase() + props.pokemon.name.slice(1) } </h1>
                 {/* <h3> Height: { monster.height } </h3>
