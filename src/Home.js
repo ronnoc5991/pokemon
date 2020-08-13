@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Pokemon from './Pokemon'
 
 function Home() {
-  const numberOfPokemon = 12;
+  const numberOfPokemon = 15;
   const [rawPokemon, setRawPokemon] = useState([])
 
   function getPokemon () {

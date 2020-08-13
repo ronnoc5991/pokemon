@@ -3,6 +3,27 @@
   --pokemon-light-blue: #3D7DCA;
   --pokemon-dark-blue: #003A70;
   --pokemon-red: #FF0000;
+  /* Colors for Types */
+  --type-grass: #82C95B;
+  --type-fire: #E87A3D;
+  --type-water: #639CE4;
+  --type-bug: #ACC23E;
+  --type-normal: #ACAD99;
+  --type-poison: #B369AF;
+  --type-electric: #F8D030;
+  --type-ground: #CEB250;
+  --type-fairy: #E8B0EB;
+  --type-fighting: #C45D4C;
+  --type-psychic: #E96C95;
+  --type-rock: #BAA85E;
+  --type-ghost: #816DB6;
+  --type-ice: #98D8D8;
+  --type-dragon: #8572C8;
+  --type-flying: #90AAD7;
+  --type-steel: #9FA9AF;
+  --type-electric: #E7C536;
+  --type-ice: #81CFD7;
+  --type-dark: #79726B;
 }
 
 .App {
@@ -12,7 +33,9 @@
 
 .main {
   margin-top: 8vh;
-  padding-top: 2vh;
+  min-height: 92vh;
+  padding-top: 4vh;
+  padding-bottom: 4vh;
   background-color: #FAFAFA;
 }
 
@@ -20,9 +43,10 @@ nav {
   position: fixed;
   height: 8vh;
   background-color: white;
-  box-shadow: 0px 0px 5px 1px var(--pokemon-red);
+  box-shadow: 0px 0px 5px 1px grey;
   width: 100vw;
   top: 0;
+  z-index: 10;
 }
 
 .logo-container {
@@ -86,7 +110,7 @@ ul:hover .sliding-rect {
   display: grid;
   grid-template-columns: repeat(auto-fill, 300px);
   justify-content: center;
-  grid-gap: 20px;
+  grid-gap: 30px;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
@@ -94,10 +118,26 @@ ul:hover .sliding-rect {
 
 .monster-home-display {
   width: 300px;
-  border: 1px solid black;
-  /* margin: 20px; */
+  box-sizing: border-box;
+  border-radius: 50px;
+  max-width: 300px;
+  /* display: grid;
+  grid-template-rows: 250px 1fr;
+  justify-content: center; */
+  position: relative;
+  transition: all 200ms ease-in-out;
+  background-color: white;
+  box-shadow: 0 0 6px 3px rgba(0,0,0,0.5);
+}
+
+.monster-home-display:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 8px 5px rgba(0,0,0,0.5);
 }
 
 .monster-home-display img {
-  height: 200px;
+  position: relative;
+  height: 250px;
+  top: -10px;
+  filter: drop-shadow(12px 12px 7px rgba(0,0,0,0.5));
 }

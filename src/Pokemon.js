@@ -31,13 +31,13 @@ const [types, setTypes] = useState([])
 
     return (
         <div key={ monster.id } className="monster-home-display" >
-            <h1> { props.pokemon.name.toUpperCase() } </h1>
             <img src={`https://pokeres.bastionbot.org/images/pokemon/${monster.id}.png`} alt=""/>
-            <h3> Height: { monster.height } </h3>
-            <h3> Weight: { monster.weight } </h3>
-            { types.map(type => (
+            <h1> { props.pokemon.name.charAt(0).toUpperCase() + props.pokemon.name.slice(1) } </h1>
+            {/* <h3> Height: { monster.height } </h3>
+            <h3> Weight: { monster.weight } </h3> */}
+            {/* { types.map(type => (
                 <h3>Type: { type } </h3>
-            )) }
+            )) } */}
         </div>
     )
 }
