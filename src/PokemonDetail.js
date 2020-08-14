@@ -21,6 +21,7 @@ function PokemonDetail({ match }) {
     }
 
     const [details, setDetails] = useState({
+        'abilities': [{'ability': {'name': '', 'url': ''}}],
         'types': [{'type': {'name': ''}}, {'type': {'name': ''}}],
         'stats': [{'base_stat': '', 'stat': {'name':''}}, 
                   {'base_stat': '', 'stat': {'name':''}}, 
@@ -29,6 +30,25 @@ function PokemonDetail({ match }) {
                   {'base_stat': '', 'stat': {'name':''}}, 
                   {'base_stat': '', 'stat': {'name':''}}]
     })
+
+    const [abilities, setAbilities] = useState(
+        [
+            {
+                'name': '',
+                'effect_entries': [
+                    {'effect': ''},
+                    {'effect': ''}
+                ]
+            },
+            {
+                'name': '',
+                'effect_entries': [
+                    {'effect': ''},
+                    {'effect': ''}
+                ]
+            }
+        ]
+        );
 
     function getDetails () {
         fetch(`https://pokeapi.co/api/v2/pokemon/${match.params.id}`)
@@ -42,6 +62,7 @@ function PokemonDetail({ match }) {
 
     useEffect(() => {
         console.log(details)
+        getAbilities()
     }, [details])
 
     console.log(match.params.id);
@@ -53,14 +74,45 @@ function PokemonDetail({ match }) {
         return LENGTH
     }
 
+    function getAbilities () {
+        let fetchedAbilities = []
+        details.abilities.map(ability => 
+                fetch(ability.ability.url)
+                .then(response => response.json())
+                .then(data => fetchedAbilities.push(data))
+            )
+        setAbilities(fetchedAbilities)
+    }
+
+    useEffect(() => {
+        console.log(abilities)
+    }, [abilities])
+
     return (
         <div className="detail main">
             <div className="detail-image-container" >
                 <img src={`https://pokeres.bastionbot.org/images/pokemon/${match.params.id}.png`} alt=""/>
             </div>
             <div className="type-image-container" >
-                <img src={ typeEmblems[details.types[0].type.name] } alt=""/>
-                {/* Need to include both emblems if they are available */}
+                { details.types.map(type =>
+                    <img src={ typeEmblems[type.type.name] } alt=""/>
+                )}
+            </div>
+
+            <div className="detail-information" >
+                <div>
+                    Height: { details.height }
+                </div>
+                <div>
+                    Weight : { details.weight }
+                </div>
+                <div>
+                    Abilities:
+                    { abilities.map(ability => 
+                        <h1> { ability.effect_entries[1].effect } </h1>  
+                        // Break point here 
+                    )}
+                </div>
             </div>
 
             <div className="base-stats" >
