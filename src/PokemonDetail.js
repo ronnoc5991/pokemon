@@ -79,7 +79,7 @@ function PokemonDetail({ match }) {
         details.abilities.map(ability => 
                 fetch(ability.ability.url)
                 .then(response => response.json())
-                .then(data => fetchedAbilities.push(data))
+                .then(data => setAbilities(data))
             )
         setAbilities(fetchedAbilities)
     }
@@ -102,16 +102,18 @@ function PokemonDetail({ match }) {
             <div className="detail-information" >
                 <div>
                     Height: { details.height }
+                    {/* this is in decimeters */}
                 </div>
                 <div>
                     Weight : { details.weight }
                 </div>
                 <div>
-                    Abilities:
-                    { abilities.map(ability => 
-                        <h1> { ability.effect_entries[1].effect } </h1>  
-                        // Break point here 
-                    )}
+                    Abilities
+                    <ul>
+                    { details.abilities.map(ability => 
+                            <li> {ability.ability.name} </li>
+                        ) }
+                    </ul>
                 </div>
             </div>
 
