@@ -30,26 +30,16 @@ function PokemonDetail({ match }) {
                   {'base_stat': '', 'stat': {'name':''}}, 
                   {'base_stat': '', 'stat': {'name':''}}],
         'name' : '',
+        'species': ''
     })
 
-    const [abilities, setAbilities] = useState(
-        [
-            {
-                'name': '',
-                'effect_entries': [
-                    {'effect': ''},
-                    {'effect': ''}
-                ]
-            },
-            {
-                'name': '',
-                'effect_entries': [
-                    {'effect': ''},
-                    {'effect': ''}
-                ]
-            }
-        ]
-        );
+    const [speciesData, setSpeciesData] = useState({
+        'evolution_chain': {
+            'url': ''
+        }
+    })
+
+    const [evolutionChain, setEvolutionChain] = useState([])
 
     function getDetails () {
         fetch(`https://pokeapi.co/api/v2/pokemon/${match.params.id}`)
@@ -57,45 +47,33 @@ function PokemonDetail({ match }) {
         .then(data => setDetails(data))
     }
 
-    useEffect(() => {
-        getDetails();
-        getEvolutionChain();
-    }, [])
-
-    useEffect(() => {
-        console.log(details)
-        getAbilities()
-    }, [details])
+    function getSpeciesData () {
+        fetch(details.species.url)
+        .then(response => response.json())
+        .then(data => setSpeciesData(data))
+    }
 
     function getEvolutionChain () {
-        fetch(`https://pokeapi.co/api/v2/evolution-chain/${match.params.id}`)
+        fetch(speciesData.evolution_chain.url)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => setEvolutionChain(data))
     }
 
-    // Evolution chains only work if passed the id number of the first evolution phase
+    var evolutionArray = []
 
-    function getStyles (number) {
-        let STYLES = {
-            flexBasis: `${number}%`
-        }
-
-        return STYLES
+    function findEvolutions () {
+        evolutionArray.push(evolutionChain.chain.species.url)
+        console.log(evolutionArray)
     }
 
-    function getAbilities () {
-        let fetchedAbilities = []
-        details.abilities.map(ability =>
-                fetch(ability.ability.url)
-                .then(response => response.json())
-                .then(data => setAbilities(data))
-            )
-        setAbilities(fetchedAbilities)
-    }
 
-    // useEffect(() => {
-    //     console.log(abilities)
-    // }, [abilities])
+    // BaseEvolution       data.chain.species.name
+    // BaseEvolutionURL    data.chain.species.url
+    // 2Evolution          data.chain.evolves_to[0].species.name
+    // 2EvolutionURL       data.chain.evolves_to[0].species.url
+    // 3Evolution          data.chain.evolves_to[0].evolves_to[0].species.name
+    // 3EvolutionURL       data.chain.evolves_to[0].evolves_to[0].species.url
+
 
     function makeIDNumber (id) {
         if (id) {
@@ -119,6 +97,25 @@ function PokemonDetail({ match }) {
     function getWeight (weight) {
         return weight * .1
     }
+
+    useEffect(() => {
+        getDetails();
+    }, [])
+
+    useEffect(() => {
+        console.log(details)
+        getSpeciesData()
+    }, [details])
+
+    useEffect(() => {
+        console.log(speciesData)
+        getEvolutionChain()
+    }, [speciesData])
+
+    useEffect(() => {
+        console.log(evolutionChain)
+        // findEvolutions()
+    }, [evolutionChain])
 
     return (
         <div className="detail main">
@@ -184,7 +181,7 @@ function PokemonDetail({ match }) {
                         { details.stats[0].stat.name.toUpperCase() }
                     </div>
                     <div className="stats-bar" >
-                        <div className="hp-bar filled" style={{flexBasis: `${details.stats[0].base_stat}%`}} >
+                        <div className="hp-bar filled" style={{flexBasis: `${details.stats[0].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}} >
                             { details.stats[0].base_stat }
                         </div>
                     </div>
@@ -195,7 +192,7 @@ function PokemonDetail({ match }) {
                         ATK
                     </div>
                     <div className="stats-bar" >
-                        <div className="attack-bar filled" style={{flexBasis: `${details.stats[1].base_stat}%`}}>
+                        <div className="attack-bar filled" style={{flexBasis: `${details.stats[1].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}}>
                             { details.stats[1].base_stat }
                         </div>
                     </div>
@@ -206,7 +203,7 @@ function PokemonDetail({ match }) {
                         DEF
                     </div>
                     <div className="stats-bar" >
-                        <div className="defense-bar filled" style={{flexBasis: `${details.stats[2].base_stat}%`}}>
+                        <div className="defense-bar filled" style={{flexBasis: `${details.stats[2].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}}>
                             { details.stats[2].base_stat }
                         </div>
                     </div>
@@ -217,22 +214,34 @@ function PokemonDetail({ match }) {
                         SPD
                     </div>
                     <div className="stats-bar" >
-                        <div className="speed-bar filled" style={{flexBasis: `${details.stats[5].base_stat}%`}}>
+                        <div className="speed-bar filled" style={{flexBasis: `${details.stats[5].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}}>
                             { details.stats[5].base_stat }
                         </div>
                     </div>
                 </div>
 
-                <div className="exp-container stat" >
+                <div className="sp-attack-container stat" >
                     <div className="label" >
-                        EXP
+                        SP ATK
                     </div>
                     <div className="stats-bar" >
-                        <div className="exp-bar filled" style={{flexBasis: `${details.base_experience}%`}} >
-                            { details.base_experience }
+                        <div className="sp-attack-bar filled" style={{flexBasis: `${details.stats[3].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}}>
+                            { details.stats[3].base_stat }
                         </div>
                     </div>
                 </div>
+
+                <div className="sp-defense-container stat" >
+                    <div className="label" >
+                        SP DEF
+                    </div>
+                    <div className="stats-bar" >
+                        <div className="sp-defense-bar filled" style={{flexBasis: `${details.stats[4].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}}>
+                            { details.stats[4].base_stat }
+                        </div>
+                    </div>
+                </div>
+                    
 
 
             </div>
