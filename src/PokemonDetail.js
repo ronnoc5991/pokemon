@@ -28,7 +28,8 @@ function PokemonDetail({ match }) {
                   {'base_stat': '', 'stat': {'name':''}}, 
                   {'base_stat': '', 'stat': {'name':''}}, 
                   {'base_stat': '', 'stat': {'name':''}}, 
-                  {'base_stat': '', 'stat': {'name':''}}]
+                  {'base_stat': '', 'stat': {'name':''}}],
+        'name' : '',
     })
 
     const [abilities, setAbilities] = useState(
@@ -50,6 +51,9 @@ function PokemonDetail({ match }) {
         ]
         );
 
+    const [descriptions, setDescriptions] = useState(['', '', '', '', ''])
+
+
     function getDetails () {
         fetch(`https://pokeapi.co/api/v2/pokemon/${match.params.id}`)
         .then(response => response.json())
@@ -61,11 +65,9 @@ function PokemonDetail({ match }) {
     }, [])
 
     useEffect(() => {
-        console.log(details)
+        // console.log(details)
         getAbilities()
     }, [details])
-
-    console.log(match.params.id);
 
     function getStyles (number) {
         let LENGTH = {
@@ -76,44 +78,101 @@ function PokemonDetail({ match }) {
 
     function getAbilities () {
         let fetchedAbilities = []
-        details.abilities.map(ability => 
+        details.abilities.map(ability =>
                 fetch(ability.ability.url)
                 .then(response => response.json())
                 .then(data => setAbilities(data))
             )
         setAbilities(fetchedAbilities)
+        
     }
 
     useEffect(() => {
         console.log(abilities)
     }, [abilities])
 
+    function makeIDNumber (id) {
+        if (id) {
+            if (id < 10) {
+                return `#00${id}`
+            } else if (id < 100) {
+                return `#0${id}`
+            } else {
+                return `#${id}`
+            }
+        } else {
+            return '#000'
+        }
+        
+    }
+
+    function getHeight (height) {
+        return height * 10
+    }
+
+
+    async function getAbilityDescription (url) {
+        let descriptions = []
+        let rawData = await fetch(url)
+        let data = await rawData.json()
+        let effects = await data.effect_entries
+        effects.map((effect) => { 
+            if (effect.language.name === 'en') { //check if it is in English
+                descriptions.push(effect.short_effect)
+            }
+        })
+        setDescriptions(descriptions)
+    } 
+
     return (
         <div className="detail main">
-            <div className="detail-image-container" >
-                <img src={`https://pokeres.bastionbot.org/images/pokemon/${match.params.id}.png`} alt=""/>
-            </div>
-            <div className="type-image-container" >
-                { details.types.map(type =>
-                    <img src={ typeEmblems[type.type.name] } alt=""/>
-                )}
-            </div>
 
             <div className="detail-information" >
-                <div>
-                    Height: { details.height }
-                    {/* this is in decimeters */}
+                <div className="pokemon-name" >
+                    { details.name.charAt(0).toUpperCase() + details.name.slice(1) }
                 </div>
-                <div>
-                    Weight : { details.weight }
+                <div className="pokemon-number" >
+                    { makeIDNumber(details.id) }
                 </div>
-                <div>
-                    Abilities
-                    <ul>
-                    { details.abilities.map(ability => 
-                            <li> {ability.ability.name} </li>
-                        ) }
-                    </ul>
+
+                <div className="detail-image-container" >
+                    <img src={`https://pokeres.bastionbot.org/images/pokemon/${match.params.id}.png`} alt=""/>
+                </div>
+
+                <div className="info-piece" >
+                    <div className="info-header" >
+                        Height
+                    </div>
+                    <div className="info-info" > { getHeight(details.height) } cm </div>
+                </div>
+
+                <div className="info-piece" >
+                    <div className="info-header">
+                        Weight
+                    </div>
+                    <div className="info-info"> { details.weight } </div>
+                    {/* weight in hectograms */}
+                </div>
+
+                <div className="info-piece abilities" >
+                    <div className="info-header">
+                        Abilities
+                    </div>
+                    <div className="info-info" >
+                        { details.abilities.map((ability, index) => 
+                            <div title={ getAbilityDescription(ability.ability.url).then(response => response) } > {ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1) } </div>
+                        )}
+                    </div>
+    
+                </div>
+
+                <div className="info-piece types" >
+                    <div className="info-header">
+                        Types
+                    </div>
+                { details.types.map(type =>
+                    <img title={ type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1) } src={ typeEmblems[type.type.name] } alt=""/>
+                )}
                 </div>
             </div>
 
