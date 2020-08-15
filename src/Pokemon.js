@@ -42,7 +42,6 @@ function Pokemon(props) {
     useEffect(() => {
         if (monster.types) {
             getTypes();
-            console.log(monster)
         }
     }, [monster])
 

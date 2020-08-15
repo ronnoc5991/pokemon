@@ -39,7 +39,16 @@ function PokemonDetail({ match }) {
         }
     })
 
-    const [evolutionChain, setEvolutionChain] = useState([])
+    const [evolutionChain, setEvolutionChain] = useState({
+        'chain': {
+            'species': {
+                'url': ''
+            },
+            'evolves_to': []
+        }
+    })
+
+    const [chainNames, setChainNames] = useState([])
 
     function getDetails () {
         fetch(`https://pokeapi.co/api/v2/pokemon/${match.params.id}`)
@@ -61,10 +70,15 @@ function PokemonDetail({ match }) {
 
     var evolutionArray = []
 
-    function findEvolutions () {
-        evolutionArray.push(evolutionChain.chain.species.url)
-        console.log(evolutionArray)
+    function findEvolutions (passedChain) {
+        evolutionArray.push(passedChain.species.name) //the first in evo chain
+        if (passedChain.evolves_to.length > 0) {
+            findEvolutions(passedChain.evolves_to[0])
+        }
+        setChainNames(evolutionArray);
     }
+
+    
 
 
     // BaseEvolution       data.chain.species.name
@@ -114,8 +128,29 @@ function PokemonDetail({ match }) {
 
     useEffect(() => {
         console.log(evolutionChain)
-        // findEvolutions()
+        findEvolutions(evolutionChain.chain)
     }, [evolutionChain])
+
+    var spriteLinks = [];
+
+    useEffect(() => {
+        if (chainNames.length > 0) {
+            console.log(chainNames)
+            chainNames.map((name) => {
+                fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+            .then(response => response.json())
+            .then(data => data.sprites.front_default)
+            .then(link => spriteLinks.push(link))
+        })
+        }
+        console.log(spriteLinks)
+    }, [chainNames])
+
+    // function getSprite (name) {
+    //     fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+    //     .then(response => response.json())
+    //     .then(data => data.sprites.front_default)
+    // }
 
     return (
         <div className="detail main">
@@ -242,9 +277,12 @@ function PokemonDetail({ match }) {
                     </div>
                 </div>
                     
-
-
             </div>
+
+            <div className="evolutions-container" >
+                    
+            </div>
+
         </div>
     )
 }
