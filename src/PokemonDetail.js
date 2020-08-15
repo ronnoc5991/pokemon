@@ -76,9 +76,11 @@ function PokemonDetail({ match }) {
     // Evolution chains only work if passed the id number of the first evolution phase
 
     function getStyles (number) {
-        return {
-            width: `${number}%`
+        let STYLES = {
+            flexBasis: `${number}%`
         }
+
+        return STYLES
     }
 
     function getAbilities () {
@@ -120,14 +122,16 @@ function PokemonDetail({ match }) {
 
     return (
         <div className="detail main">
-
-            <div className="detail-information" >
+            <div className="name-container" >
                 <div className="pokemon-name" >
                     { details.name.charAt(0).toUpperCase() + details.name.slice(1) }
                 </div>
                 <div className="pokemon-number" >
                     { makeIDNumber(details.id) }
                 </div>
+            </div>
+
+            <div className="detail-information" >
 
                 <div className="detail-image-container" >
                     <img src={`https://pokeres.bastionbot.org/images/pokemon/${match.params.id}.png`} alt=""/>
@@ -180,7 +184,7 @@ function PokemonDetail({ match }) {
                         { details.stats[0].stat.name.toUpperCase() }
                     </div>
                     <div className="stats-bar" >
-                        <div className="hp-bar filled" styles={ getStyles(details.stats[0].base_stat) } >
+                        <div className="hp-bar filled" style={{flexBasis: `${details.stats[0].base_stat}%`}} >
                             { details.stats[0].base_stat }
                         </div>
                     </div>
@@ -191,7 +195,7 @@ function PokemonDetail({ match }) {
                         ATK
                     </div>
                     <div className="stats-bar" >
-                        <div className="attack-bar filled" >
+                        <div className="attack-bar filled" style={{flexBasis: `${details.stats[1].base_stat}%`}}>
                             { details.stats[1].base_stat }
                         </div>
                     </div>
@@ -202,7 +206,7 @@ function PokemonDetail({ match }) {
                         DEF
                     </div>
                     <div className="stats-bar" >
-                        <div className="defense-bar filled" >
+                        <div className="defense-bar filled" style={{flexBasis: `${details.stats[2].base_stat}%`}}>
                             { details.stats[2].base_stat }
                         </div>
                     </div>
@@ -213,7 +217,7 @@ function PokemonDetail({ match }) {
                         SPD
                     </div>
                     <div className="stats-bar" >
-                        <div className="speed-bar filled" >
+                        <div className="speed-bar filled" style={{flexBasis: `${details.stats[5].base_stat}%`}}>
                             { details.stats[5].base_stat }
                         </div>
                     </div>
@@ -224,7 +228,7 @@ function PokemonDetail({ match }) {
                         EXP
                     </div>
                     <div className="stats-bar" >
-                        <div className="exp-bar filled" >
+                        <div className="exp-bar filled" style={{flexBasis: `${details.base_experience}%`}} >
                             { details.base_experience }
                         </div>
                     </div>
