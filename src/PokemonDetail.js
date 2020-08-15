@@ -51,9 +51,6 @@ function PokemonDetail({ match }) {
         ]
         );
 
-    const [descriptions, setDescriptions] = useState(['', '', '', '', ''])
-
-
     function getDetails () {
         fetch(`https://pokeapi.co/api/v2/pokemon/${match.params.id}`)
         .then(response => response.json())
@@ -62,18 +59,26 @@ function PokemonDetail({ match }) {
 
     useEffect(() => {
         getDetails();
+        getEvolutionChain();
     }, [])
 
     useEffect(() => {
-        // console.log(details)
+        console.log(details)
         getAbilities()
     }, [details])
 
+    function getEvolutionChain () {
+        fetch(`https://pokeapi.co/api/v2/evolution-chain/${match.params.id}`)
+        .then(response => response.json())
+        .then(data => console.log(data))
+    }
+
+    // Evolution chains only work if passed the id number of the first evolution phase
+
     function getStyles (number) {
-        let LENGTH = {
-            width: `${number}px`
+        return {
+            width: `${number}%`
         }
-        return LENGTH
     }
 
     function getAbilities () {
@@ -84,12 +89,11 @@ function PokemonDetail({ match }) {
                 .then(data => setAbilities(data))
             )
         setAbilities(fetchedAbilities)
-        
     }
 
-    useEffect(() => {
-        console.log(abilities)
-    }, [abilities])
+    // useEffect(() => {
+    //     console.log(abilities)
+    // }, [abilities])
 
     function makeIDNumber (id) {
         if (id) {
@@ -110,19 +114,9 @@ function PokemonDetail({ match }) {
         return height * 10
     }
 
-
-    async function getAbilityDescription (url) {
-        let descriptions = []
-        let rawData = await fetch(url)
-        let data = await rawData.json()
-        let effects = await data.effect_entries
-        effects.map((effect) => { 
-            if (effect.language.name === 'en') { //check if it is in English
-                descriptions.push(effect.short_effect)
-            }
-        })
-        setDescriptions(descriptions)
-    } 
+    function getWeight (weight) {
+        return weight * .1
+    }
 
     return (
         <div className="detail main">
@@ -150,8 +144,7 @@ function PokemonDetail({ match }) {
                     <div className="info-header">
                         Weight
                     </div>
-                    <div className="info-info"> { details.weight } </div>
-                    {/* weight in hectograms */}
+                    <div className="info-info"> { getWeight(details.weight) } kg </div>
                 </div>
 
                 <div className="info-piece abilities" >
@@ -160,7 +153,7 @@ function PokemonDetail({ match }) {
                     </div>
                     <div className="info-info" >
                         { details.abilities.map((ability, index) => 
-                            <div title={ getAbilityDescription(ability.ability.url).then(response => response) } > {ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1) } </div>
+                            <div> {ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1) } </div>
                         )}
                     </div>
     
@@ -187,7 +180,7 @@ function PokemonDetail({ match }) {
                         { details.stats[0].stat.name.toUpperCase() }
                     </div>
                     <div className="stats-bar" >
-                        <div className="hp-bar filled" >
+                        <div className="hp-bar filled" styles={ getStyles(details.stats[0].base_stat) } >
                             { details.stats[0].base_stat }
                         </div>
                     </div>

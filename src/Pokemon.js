@@ -54,9 +54,7 @@ function Pokemon(props) {
     }
 
     var STYLES = { 
-        // boxShadow: `0px 0px 10px 5px var(--type-${types[0]})`,
         background: `radial-gradient(circle, rgba(255,255,255,1) 40%, var(--type-${types[0]}) 100%)`,
-        // border: `2px solid var(--type-${types[0]})`
     }
 
     function makeIDNumber (id) {
@@ -87,20 +85,15 @@ function Pokemon(props) {
                     <h1> { props.pokemon.name.charAt(0).toUpperCase() + props.pokemon.name.slice(1) } </h1>
 
 
-                    {/* <div className="secondary-info" > */}
-
                         <div className="monster-id" >
-                            {/* { monster.id } */}
                             { makeIDNumber(monster.id) }
                         </div>
 
                         <div className="monster-type" >
                             { types.map(type =>
-                                <img src={ typeEmblems[type] } alt=""/>
+                                <img title={ type.charAt(0).toUpperCase() + type.slice(1) } src={ typeEmblems[type] } alt=""/>
                             )}          
                         </div>
-
-                    {/* </div> */}
 
                 </div>
 
