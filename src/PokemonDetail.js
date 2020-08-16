@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function PokemonDetail({ match }) {
+
+    // TYPE EMBLEM URLS -------------------------------------------------------------
 
     const typeEmblems = {
         'normal': 'https://cdn.bulbagarden.net/upload/2/22/GO_Normal.png',
@@ -19,6 +22,8 @@ function PokemonDetail({ match }) {
         'ghost': 'https://cdn.bulbagarden.net/upload/a/a1/GO_Ghost.png',
         'dragon': 'https://cdn.bulbagarden.net/upload/9/90/GO_Dragon.png',
     }
+
+    // STATE HOOKS -------------------------------------------------------------
 
     const [details, setDetails] = useState({
         'abilities': [{'ability': {'name': '', 'url': ''}}],
@@ -48,7 +53,11 @@ function PokemonDetail({ match }) {
         }
     })
 
-    const [chainNames, setChainNames] = useState([])
+    const [chainNames, setChainNames] = useState([]);
+
+    const [sprites, setSprites] = useState([])
+
+    // DATA FETCHING FUNCTIONS -------------------------------------------------------------
 
     function getDetails () {
         fetch(`https://pokeapi.co/api/v2/pokemon/${match.params.id}`)
@@ -71,22 +80,22 @@ function PokemonDetail({ match }) {
     var evolutionArray = []
 
     function findEvolutions (passedChain) {
-        evolutionArray.push(passedChain.species.name) //the first in evo chain
+        // setChainNames(chainNames => chainNames.concat([passedChain.species.name]))
+        evolutionArray.push(passedChain.species.name)
         if (passedChain.evolves_to.length > 0) {
             findEvolutions(passedChain.evolves_to[0])
         }
         setChainNames(evolutionArray);
     }
 
-    
+    async function getSprite (name) {
+        let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+        let data = await response.json()
+        let sprite = await data.sprites.front_default
+        return sprite
+    }
 
-
-    // BaseEvolution       data.chain.species.name
-    // BaseEvolutionURL    data.chain.species.url
-    // 2Evolution          data.chain.evolves_to[0].species.name
-    // 2EvolutionURL       data.chain.evolves_to[0].species.url
-    // 3Evolution          data.chain.evolves_to[0].evolves_to[0].species.name
-    // 3EvolutionURL       data.chain.evolves_to[0].evolves_to[0].species.url
+    // DATA MANIPULATION FUNCTIONS -------------------------------------------------------------
 
 
     function makeIDNumber (id) {
@@ -112,48 +121,79 @@ function PokemonDetail({ match }) {
         return weight * .1
     }
 
-    useEffect(() => {
-        getDetails();
-    }, [])
+    function getID (passedUrl) {
+        var url = passedUrl;
+        var match = url.match( /(\d+).png/ )
+        if (match) {
+            var idNumber = match[1];
+        }
+        return idNumber
+    }
+
+    // USE EFFECTS -------------------------------------------------------------
 
     useEffect(() => {
-        console.log(details)
+        setDetails({
+            'abilities': [{'ability': {'name': '', 'url': ''}}],
+            'types': [{'type': {'name': ''}}, {'type': {'name': ''}}],
+            'stats': [{'base_stat': '', 'stat': {'name':''}}, 
+                      {'base_stat': '', 'stat': {'name':''}}, 
+                      {'base_stat': '', 'stat': {'name':''}}, 
+                      {'base_stat': '', 'stat': {'name':''}}, 
+                      {'base_stat': '', 'stat': {'name':''}}, 
+                      {'base_stat': '', 'stat': {'name':''}}],
+            'name' : '',
+            'species': ''
+        })
+        setSpeciesData({
+            'evolution_chain': {
+                'url': ''
+            }
+        })
+        setEvolutionChain({
+            'chain': {
+                'species': {
+                    'url': ''
+                },
+                'evolves_to': []
+            }
+        })
+        setChainNames([])
+        setSprites([])
+        getDetails();
+        evolutionArray = [];
+    }, [match])
+
+    useEffect(() => {
         getSpeciesData()
     }, [details])
 
     useEffect(() => {
-        console.log(speciesData)
         getEvolutionChain()
     }, [speciesData])
 
     useEffect(() => {
-        console.log(evolutionChain)
         findEvolutions(evolutionChain.chain)
     }, [evolutionChain])
 
-    var spriteLinks = [];
-
     useEffect(() => {
         if (chainNames.length > 0) {
-            console.log(chainNames)
             chainNames.map((name) => {
-                fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-            .then(response => response.json())
-            .then(data => data.sprites.front_default)
-            .then(link => spriteLinks.push(link))
+                getSprite(name)
+                .then(link => setSprites(sprites => sprites.concat([link]).sort() ) )
         })
         }
-        console.log(spriteLinks)
     }, [chainNames])
 
-    // function getSprite (name) {
-    //     fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-    //     .then(response => response.json())
-    //     .then(data => data.sprites.front_default)
-    // }
+    useEffect(() => {
+        console.log(sprites)
+    }, [sprites])
+
+
 
     return (
         <div className="detail main">
+
             <div className="name-container" >
                 <div className="pokemon-name" >
                     { details.name.charAt(0).toUpperCase() + details.name.slice(1) }
@@ -163,12 +203,16 @@ function PokemonDetail({ match }) {
                 </div>
             </div>
 
-            <div className="detail-information" >
+
+
+
 
                 <div className="detail-image-container" >
                     <img src={`https://pokeres.bastionbot.org/images/pokemon/${match.params.id}.png`} alt=""/>
                 </div>
 
+
+            <div className="info-container" >
                 <div className="info-piece" >
                     <div className="info-header" >
                         Height
@@ -205,83 +249,90 @@ function PokemonDetail({ match }) {
                 </div>
             </div>
 
-            <div className="base-stats" >
+                <div className="base-stats" >
 
-                <div className="header" >
-                    <h4>Base Stats</h4>
-                </div>
-
-                <div className="hp-container stat" >
-                    <div className="label" >
-                        { details.stats[0].stat.name.toUpperCase() }
+                    <div className="header" >
+                        <h4>Base Stats</h4>
                     </div>
-                    <div className="stats-bar" >
-                        <div className="hp-bar filled" style={{flexBasis: `${details.stats[0].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}} >
-                            { details.stats[0].base_stat }
+
+                    <div className="hp-container stat" >
+                        <div className="label" >
+                            { details.stats[0].stat.name.toUpperCase() }
+                        </div>
+                        <div className="stats-bar" >
+                            <div className="hp-bar filled" style={{flexBasis: `${details.stats[0].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}} >
+                                { details.stats[0].base_stat }
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="attack-container stat">
-                    <div className="label" >
-                        ATK
-                    </div>
-                    <div className="stats-bar" >
-                        <div className="attack-bar filled" style={{flexBasis: `${details.stats[1].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}}>
-                            { details.stats[1].base_stat }
+                    <div className="attack-container stat">
+                        <div className="label" >
+                            ATK
+                        </div>
+                        <div className="stats-bar" >
+                            <div className="attack-bar filled" style={{flexBasis: `${details.stats[1].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}}>
+                                { details.stats[1].base_stat }
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="defense-container stat" >
-                    <div className="label" >
-                        DEF
-                    </div>
-                    <div className="stats-bar" >
-                        <div className="defense-bar filled" style={{flexBasis: `${details.stats[2].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}}>
-                            { details.stats[2].base_stat }
+                    <div className="defense-container stat" >
+                        <div className="label" >
+                            DEF
+                        </div>
+                        <div className="stats-bar" >
+                            <div className="defense-bar filled" style={{flexBasis: `${details.stats[2].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}}>
+                                { details.stats[2].base_stat }
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="speed-container stat" >
-                    <div className="label" >
-                        SPD
-                    </div>
-                    <div className="stats-bar" >
-                        <div className="speed-bar filled" style={{flexBasis: `${details.stats[5].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}}>
-                            { details.stats[5].base_stat }
+                    <div className="speed-container stat" >
+                        <div className="label" >
+                            SPD
+                        </div>
+                        <div className="stats-bar" >
+                            <div className="speed-bar filled" style={{flexBasis: `${details.stats[5].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}}>
+                                { details.stats[5].base_stat }
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="sp-attack-container stat" >
-                    <div className="label" >
-                        SP ATK
-                    </div>
-                    <div className="stats-bar" >
-                        <div className="sp-attack-bar filled" style={{flexBasis: `${details.stats[3].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}}>
-                            { details.stats[3].base_stat }
+                    <div className="sp-attack-container stat" >
+                        <div className="label" >
+                            SP ATK
+                        </div>
+                        <div className="stats-bar" >
+                            <div className="sp-attack-bar filled" style={{flexBasis: `${details.stats[3].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}}>
+                                { details.stats[3].base_stat }
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="sp-defense-container stat" >
-                    <div className="label" >
-                        SP DEF
-                    </div>
-                    <div className="stats-bar" >
-                        <div className="sp-defense-bar filled" style={{flexBasis: `${details.stats[4].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}}>
-                            { details.stats[4].base_stat }
+                    <div className="sp-defense-container stat" >
+                        <div className="label" >
+                            SP DEF
+                        </div>
+                        <div className="stats-bar" >
+                            <div className="sp-defense-bar filled" style={{flexBasis: `${details.stats[4].base_stat}px`, backgroundColor: `var(--type-${details.types[0].type.name})`}}>
+                                { details.stats[4].base_stat }
+                            </div>
                         </div>
                     </div>
-                </div>
-                    
-            </div>
 
-            <div className="evolutions-container" >
-                    
-            </div>
+                </div>
+
+                <div className="evolutions-container" >
+                    <div className="evolution-title" >
+                        Evolution Chain
+                    </div>
+                    { sprites.map(sprite => 
+                            <Link to={ `/${ getID(sprite) }` } >
+                                <img src={ sprite } alt=""/>
+                            </Link>
+                        )}
+                </div>
 
         </div>
     )

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Pokemon from './Pokemon'
 
 function Home() {
-  const numberOfPokemon = 20;
+  const [numberOfPokemon, setNumberOfPokemon] = useState(15)
   const [rawPokemon, setRawPokemon] = useState([])
 
   function getPokemon () {
@@ -11,9 +11,17 @@ function Home() {
     .then(allPokemon => setRawPokemon(allPokemon.results))
 }
 
+  function loadMorePokemon () {
+    setNumberOfPokemon(numberOfPokemon => numberOfPokemon + 10 )
+  }
+
   useEffect(() => {
     getPokemon()
   }, [])
+
+  useEffect(() => {
+    getPokemon()
+  }, [numberOfPokemon])
 
     return (
       <>
@@ -21,6 +29,9 @@ function Home() {
         { rawPokemon.map(pokemon => (
           <Pokemon  key={ pokemon.name } pokemon={ pokemon } />
         )) }
+        <div className="load-more" onClick={ loadMorePokemon } >
+          Load More
+        </div>
         </div>
       </>
     )
