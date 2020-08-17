@@ -28,9 +28,9 @@
 
 .App {
   text-align: center;
-  background-image: url(./pokeball-pixel.png);
-  background-size: 2em;
-  
+  /* background-image: url(./pokeball-pixel.png); */
+  /* background-size: 2em; */
+  background-image: url(./background.jpg);
 }
 
 .main {
@@ -108,11 +108,11 @@ ul:hover svg {
 }
 
 ul:hover .sliding-rect {
-  transform: translateX(-180px);
+  transform: translateX(-160px);
 }
 
 nav a {
-  width: 100px;
+  max-width: 120px;
 }
 
 /* ABOUT PAGE */
