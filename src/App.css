@@ -30,6 +30,7 @@
   text-align: center;
   background-image: url(./pokeball-pixel.png);
   background-size: 2em;
+  
 }
 
 .main {
@@ -43,7 +44,7 @@ nav {
   position: fixed;
   height: 8vh;
   background-color: white;
-  box-shadow: 0px 0px 5px 1px grey;
+  box-shadow: 0px 0px 5px 5px rgb(107, 107, 107);
   width: 100vw;
   top: 0;
   z-index: 10;
@@ -69,7 +70,7 @@ nav ul {
   top: 0;
   display: flex;
   align-items: center;
-  width: 150px;
+  width: 180px;
   height: 8vh;
   justify-content: space-around;
   margin: 0
@@ -79,13 +80,19 @@ nav li {
   list-style-type: none;
 }
 
+nav li:hover {
+  color: red;
+}
+
 .sliding-rect {
   position: absolute;
   right: 10px;
   height: 100%;
-  width: 150px;
+  width: 180px;
   transition: all ease-in-out 300ms;
   background-color: white;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 
 .sliding-rect svg {
@@ -101,7 +108,11 @@ ul:hover svg {
 }
 
 ul:hover .sliding-rect {
-  transform: translateX(-150px);
+  transform: translateX(-180px);
+}
+
+nav a {
+  width: 100px;
 }
 
 /* ABOUT PAGE */
@@ -214,12 +225,32 @@ a:visited {
 .load-more div {
   width: 100px;
   background-color: white;
+  /* border-top-left-radius: 40%;
+  border-top-right-radius: 40%;
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 100%; */
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 0 8px 5px rgba(0,0,0,0.5);
+  width: 150px;
+  height: 150px;
+  display: flex;
 }
 
 .load-more div:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
+
+.load-more div img {
+  width: 90%;
+  margin: auto;
+}
+
+/* .load-more img:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+} */
 
 
 /* Pokemon Details */

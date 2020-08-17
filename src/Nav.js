@@ -11,17 +11,24 @@ function Nav() {
                     <PokeBall />
                 </div>
                 <Link to="/pokemon/">
-                    <li>Home</li>
+                    <li title="Home" ><i class="fa fa-home fa-lg"></i></li>
+                </Link>
+                <Link to="/pokemon/about"> 
+                    <li title="Search"><i class="fa fa-search fa-lg"></i></li>
                 </Link>
                 <Link to="/pokemon/about">
-                    <li>About</li>
+                    <li title="About"><i class="fa fa-question-circle fa-lg"></i></li>
                 </Link>
             </ul>
             <div className="logo-container">
-                <img src={ logo } alt=""/>
+                <Link to="/pokemon/">
+                    <img src={ logo } alt=""/>
+                </Link>
             </div>
         </nav>
     )
 }
 
 export default Nav
+
+// the search feature should be linked to here... make it a separate component that takes input and searches via the api for the pokemon?

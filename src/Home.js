@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Pokemon from './Pokemon'
+import Pikachu from './pikachu.png'
 
 function Home() {
   const [numberOfPokemon, setNumberOfPokemon] = useState(15)
@@ -30,7 +31,7 @@ function Home() {
           <Pokemon  key={ pokemon.name } pokemon={ pokemon } />
         )) }
         <div className="load-more" onClick={ loadMorePokemon } >
-          <div>Load More</div>
+          <div> <img src={ Pikachu } alt=""/></div>
         </div>
         </div>
       </>
