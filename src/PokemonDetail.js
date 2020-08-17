@@ -83,7 +83,10 @@ function PokemonDetail({ match }) {
         // setChainNames(chainNames => chainNames.concat([passedChain.species.name]))
         evolutionArray.push(passedChain.species.name)
         if (passedChain.evolves_to.length > 0) {
-            findEvolutions(passedChain.evolves_to[0])
+            passedChain.evolves_to.map((evolution, index) => 
+                findEvolutions(evolution)
+            )
+            // findEvolutions(passedChain.evolves_to[0])
         }
         setChainNames(evolutionArray);
     }
@@ -174,6 +177,7 @@ function PokemonDetail({ match }) {
 
     useEffect(() => {
         findEvolutions(evolutionChain.chain)
+        console.log(evolutionChain)
     }, [evolutionChain])
 
     useEffect(() => {
@@ -327,9 +331,9 @@ function PokemonDetail({ match }) {
                     <div className="evolution-title" >
                         Evolution Chain
                     </div>
-                    { sprites.map(sprite => 
+                    { sprites.map((sprite, index) => 
                             <Link to={ `/${ getID(sprite) }` } >
-                                <img src={ sprite } alt=""/>
+                                <img title={ chainNames[index].charAt(0).toUpperCase() + chainNames[index].slice(1) } src={ sprite } alt=""/>
                             </Link>
                         )}
                 </div>

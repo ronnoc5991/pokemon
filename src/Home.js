@@ -30,7 +30,7 @@ function Home() {
           <Pokemon  key={ pokemon.name } pokemon={ pokemon } />
         )) }
         <div className="load-more" onClick={ loadMorePokemon } >
-          Load More
+          <div>Load More</div>
         </div>
         </div>
       </>
