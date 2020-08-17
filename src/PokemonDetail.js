@@ -332,7 +332,7 @@ function PokemonDetail({ match }) {
                         Evolution Chain
                     </div>
                     { sprites.map((sprite, index) => 
-                            <Link to={ `/${ getID(sprite) }` } >
+                            <Link to={ `/pokemon/${ getID(sprite) }` } >
                                 <img title={ chainNames[index].charAt(0).toUpperCase() + chainNames[index].slice(1) } src={ sprite } alt=""/>
                             </Link>
                         )}

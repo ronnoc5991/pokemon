@@ -14,17 +14,17 @@ function App() {
         <Nav/>
         <Switch>
           <Route 
-            path="/" 
+            path="/pokemon/" 
             exact 
             component={ Home } 
           />
           <Route 
-            path="/about" 
+            path="/pokemon/about" 
             exact 
             component={ About } 
           />
           <Route
-            path="/:id"
+            path="/pokemon/:id"
             exact
             component= { PokemonDetail }
           />

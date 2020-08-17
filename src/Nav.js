@@ -10,10 +10,10 @@ function Nav() {
                 <div className="sliding-rect">
                     <PokeBall />
                 </div>
-                <Link to="/">
+                <Link to="/pokemon/">
                     <li>Home</li>
                 </Link>
-                <Link to="/about">
+                <Link to="/pokemon/about">
                     <li>About</li>
                 </Link>
             </ul>
