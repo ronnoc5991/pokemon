@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Pokemon from './Pokemon'
 import Pikachu from './pikachu.png'
+import Closed from './pokeball-closed.png'
+import Open from './pokeball-open.png'
 
 function Home() {
   const [numberOfPokemon, setNumberOfPokemon] = useState(15)
   const [rawPokemon, setRawPokemon] = useState([])
+  const [hovering, setHovering] = useState(false)
 
   function getPokemon () {
     fetch(`https://pokeapi.co/api/v2/pokemon?limit=${numberOfPokemon}`)
@@ -13,7 +16,7 @@ function Home() {
 }
 
   function loadMorePokemon () {
-    setNumberOfPokemon(numberOfPokemon => numberOfPokemon + 10 )
+    setNumberOfPokemon(numberOfPokemon => numberOfPokemon + 20 )
   }
 
   useEffect(() => {
@@ -24,6 +27,10 @@ function Home() {
     getPokemon()
   }, [numberOfPokemon])
 
+  function changeImage () {
+    setHovering(!hovering)
+  }
+
     return (
       <>
         <div className="home main">
@@ -31,7 +38,9 @@ function Home() {
           <Pokemon  key={ pokemon.name } pokemon={ pokemon } />
         )) }
         <div className="load-more" onClick={ loadMorePokemon } >
-          <div> <img src={ Pikachu } alt=""/></div>
+          <div onMouseEnter={ changeImage } onMouseLeave={ changeImage }> 
+            { hovering ? <img src={ Open } alt=""/> : <img src={ Closed } alt=""/> }
+            </div>
         </div>
         </div>
       </>

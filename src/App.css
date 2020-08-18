@@ -28,8 +28,6 @@
 
 .App {
   text-align: center;
-  /* background-image: url(./pokeball-pixel.png); */
-  /* background-size: 2em; */
   background-image: url(./background.jpg);
 }
 

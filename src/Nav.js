@@ -21,9 +21,7 @@ function Nav() {
                 </Link>
             </ul>
             <div className="logo-container">
-                <Link to="/pokemon/">
                     <img src={ logo } alt=""/>
-                </Link>
             </div>
         </nav>
     )
