@@ -177,7 +177,6 @@ function PokemonDetail({ match }) {
 
     useEffect(() => {
         findEvolutions(evolutionChain.chain)
-        console.log(evolutionChain)
     }, [evolutionChain])
 
     useEffect(() => {
@@ -188,12 +187,6 @@ function PokemonDetail({ match }) {
         })
         }
     }, [chainNames])
-
-    useEffect(() => {
-        console.log(sprites)
-    }, [sprites])
-
-
 
     return (
         <div className="detail main">
@@ -221,14 +214,18 @@ function PokemonDetail({ match }) {
                     <div className="info-header" >
                         Height
                     </div>
-                    <div className="info-info" > { getHeight(details.height) } cm </div>
+                    <div className="info-info" > 
+                    { details.height ? `${getHeight(details.height)} cm` : '-' } 
+                    </div>
                 </div>
 
                 <div className="info-piece" >
                     <div className="info-header">
                         Weight
                     </div>
-                    <div className="info-info"> { getWeight(details.weight) } kg </div>
+                    <div className="info-info"> 
+                        { details.weight ? `${Math.round(getWeight(details.weight))} kg` : '-'}
+                    </div>
                 </div>
 
                 <div className="info-piece abilities" >

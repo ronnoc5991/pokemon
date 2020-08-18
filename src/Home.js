@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Pokemon from './Pokemon'
-import Pikachu from './pikachu.png'
 import Closed from './pokeball-closed.png'
 import Open from './pokeball-open.png'
 
 function Home() {
-  const [numberOfPokemon, setNumberOfPokemon] = useState(15)
+  const [numberOfPokemon, setNumberOfPokemon] = useState(42)
   const [rawPokemon, setRawPokemon] = useState([])
   const [hovering, setHovering] = useState(false)
 

@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Nav from './Nav'
 import Home from './Home'
+import Search from './Search'
 import About from './About'
 import PokemonDetail from './PokemonDetail'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -17,6 +18,11 @@ function App() {
             path="/pokemon/" 
             exact 
             component={ Home } 
+          />
+           <Route
+            path="/pokemon/search"
+            exact
+            component= { Search }
           />
           <Route 
             path="/pokemon/about" 

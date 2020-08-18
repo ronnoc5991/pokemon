@@ -11,13 +11,13 @@ function Nav() {
                     <PokeBall />
                 </div>
                 <Link to="/pokemon/">
-                    <li title="Home" ><i class="fa fa-home fa-lg"></i></li>
+                    <li title="Home" ><i className="fa fa-home fa-lg"></i></li>
                 </Link>
-                <Link to="/pokemon/about"> 
-                    <li title="Search"><i class="fa fa-search fa-lg"></i></li>
+                <Link to="/pokemon/search"> 
+                    <li title="Search"><i className="fa fa-search fa-lg"></i></li>
                 </Link>
                 <Link to="/pokemon/about">
-                    <li title="About"><i class="fa fa-question-circle fa-lg"></i></li>
+                    <li title="About"><i className="fa fa-question-circle fa-lg"></i></li>
                 </Link>
             </ul>
             <div className="logo-container">
