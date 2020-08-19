@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ReactComponent as PokeBall } from './pokeball.svg'
+import Go from './go.png'
 
 function Search() {
 
     const [searchTerm, setSearchTerm] = useState('');
+    const [hidden, setHidden] = useState(true);
     const [searching, setSearching] = useState(true);
     const [pokemonData, setPokemonData] = useState({
         'abilities': [{'ability': {'name': '', 'url': ''}}],
@@ -23,10 +25,12 @@ function Search() {
         e.preventDefault();
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
-        let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${searchTerm}`)
-        let data = await response.json()
-        setPokemonData(data);
-        setSearching(false);
+        if (searchTerm !== '') {
+            let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${searchTerm}`)
+            let data = await response.json()
+            setPokemonData(data);
+            setSearching(false);
+        }
     }
 
     useEffect(() => {
@@ -36,8 +40,12 @@ function Search() {
     useEffect(() => {
         if (searchTerm === '') {
             setSearching(true);
+            setHidden(true)
+        } else {
+            setHidden(false)
         }
     }, [searchTerm])
+
 
     function updateSearchTerm (e) {
         setSearchTerm(e.target.value)
@@ -64,7 +72,7 @@ function Search() {
                 <label>
                     <input type="text" onChange={ updateSearchTerm } value={ searchTerm } placeholder="Search Pokemon by ID or name" />
                 </label>
-                <button onClick={ getSearchResults } >Submit</button>
+                <button type="submit"  id={ hidden ? 'hidden' : 'pulse-it' } onClick={ getSearchResults } ><img src={ Go } alt=""/></button>
             </form>
             <div className="search-result-container" >
 
