@@ -259,6 +259,38 @@ a:visited {
 } */
 
 
+/* SEARCH FEATURE */
+
+.search-result-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.search-result-container img {
+  width: 200px;
+}
+
+.search-result {
+  width: 280px;
+  height: 280px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  display: grid;
+  grid-template-rows: 180px 1fr;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: all 200ms ease-in-out;
+  background-color: rgb(255,255,255);
+  box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.5);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-style: italic;
+  margin: auto;
+}
+
+
+
 /* Pokemon Details */
 
 

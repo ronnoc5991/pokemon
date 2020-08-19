@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Pokemon from './Pokemon'
 
 function Search() {
 
     const [searchTerm, setSearchTerm] = useState('');
+    const [searching, setSearching] = useState(true);
     const [pokemonData, setPokemonData] = useState({
         'abilities': [{'ability': {'name': '', 'url': ''}}],
         'types': [{'type': {'name': ''}}, {'type': {'name': ''}}],
@@ -23,8 +25,8 @@ function Search() {
         e.nativeEvent.stopImmediatePropagation();
         let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${searchTerm}`)
         let data = await response.json()
-        // console.log(data);
         setPokemonData(data);
+        setSearching(false);
     }
 
     useEffect(() => {
@@ -43,9 +45,12 @@ function Search() {
                 </label>
                 <button onClick={ getSearchResults } >Submit</button>
             </form>
-            <div>
-                <Link to={ `/pokemon/${pokemonData.id}` }>
-                    { pokemonData.name }
+            <div className="search-result-container" >
+                <Link to={ `/pokemon/${pokemonData.id}` } >
+                    <div className="search-result" >
+                        { searching ? 'Searching' : <img src={`https://pokeres.bastionbot.org/images/pokemon/${pokemonData.id}.png`} alt=""/> }
+                        <h1>{ pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1) }</h1>
+                    </div>
                 </Link>
             </div>
         </div>
