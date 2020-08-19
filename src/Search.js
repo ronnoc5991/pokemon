@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Pokemon from './Pokemon'
+import { ReactComponent as PokeBall } from './pokeball.svg'
 
 function Search() {
 
@@ -33,25 +33,51 @@ function Search() {
         console.log(pokemonData)
     }, [pokemonData] )
 
+    useEffect(() => {
+        if (searchTerm === '') {
+            setSearching(true);
+        }
+    }, [searchTerm])
+
     function updateSearchTerm (e) {
         setSearchTerm(e.target.value)
+    }
+
+    function makeIDNumber (id) {
+        if (id) {
+            if (id < 10) {
+                return `#00${id}`
+            } else if (id < 100) {
+                return `#0${id}`
+            } else {
+                return `#${id}`
+            }
+        } else {
+            return '#000'
+        }
+        
     }
 
     return (
         <div className="search main" >
             <form>
                 <label>
-                    <input type="text" onChange={ updateSearchTerm } value={ searchTerm } />
+                    <input type="text" onChange={ updateSearchTerm } value={ searchTerm } placeholder="Search Pokemon by ID or name" />
                 </label>
                 <button onClick={ getSearchResults } >Submit</button>
             </form>
             <div className="search-result-container" >
+
+                { searching ? <PokeBall /> : 
                 <Link to={ `/pokemon/${pokemonData.id}` } >
                     <div className="search-result" >
                         { searching ? 'Searching' : <img src={`https://pokeres.bastionbot.org/images/pokemon/${pokemonData.id}.png`} alt=""/> }
                         <h1>{ pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1) }</h1>
+                        <h2>{ makeIDNumber(pokemonData.id) }</h2>
                     </div>
                 </Link>
+                }
+
             </div>
         </div>
     )
