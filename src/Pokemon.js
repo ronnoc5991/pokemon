@@ -76,8 +76,10 @@ function Pokemon(props) {
         <Link to={ `/pokemon/${monster.id}` } >
             <div key={ monster.id } style={STYLES} className="monster-home-display" >
                 
-                { isLoading ? <PokeBall /> : <img src={`https://pokeres.bastionbot.org/images/pokemon/${monster.id}.png`} alt=""/> }
+                { isLoading ? '' : <img src={`https://pokeres.bastionbot.org/images/pokemon/${monster.id}.png`} alt=""/> }
                 
+
+                <div className="ball-container"></div>
 
                 <div className="monster-name" >
                     <h1> { props.pokemon.name.charAt(0).toUpperCase() + props.pokemon.name.slice(1) } </h1>
@@ -90,7 +92,7 @@ function Pokemon(props) {
 
                 <div className="monster-type" >
                     { types.map(type =>
-                        <img title={ type.charAt(0).toUpperCase() + type.slice(1) } src={ typeEmblems[type] } alt=""/>
+                        <img title={ type.charAt(0).toUpperCase() + type.slice(1) } key={ type }  src={ typeEmblems[type] } alt=""/>
                     )}          
                 </div>
 

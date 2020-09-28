@@ -4,7 +4,6 @@ import Nav from './Nav';
 import Intro from './Intro';
 import Home from './Home';
 import Search from './Search';
-import About from './About';
 import PokemonDetail from './PokemonDetail';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -14,7 +13,7 @@ function App() {
     <Router> 
       <div className="App">
         <Nav/>
-        {/* <Intro/> */}
+        <Intro/>
         <Switch>
           <Route 
             path="/pokemon/" 
@@ -25,11 +24,6 @@ function App() {
             path="/pokemon/search"
             exact
             component= { Search }
-          />
-          <Route 
-            path="/pokemon/about" 
-            exact 
-            component={ About } 
           />
           <Route
             path="/pokemon/:id"

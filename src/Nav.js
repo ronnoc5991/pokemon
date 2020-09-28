@@ -18,13 +18,10 @@ function Nav() {
             </div>
             <ul className={`${open ? 'open-nav' : ''}`}>
                 <Link to="/pokemon/">
-                    <li title="Home" >HOME</li>
+                    <li title="Home" onClick={ toggleMenu }><i className="fa fa-home"></i></li>
                 </Link>
                 <Link to="/pokemon/search"> 
-                    <li title="Search">SEARCH</li>
-                </Link>
-                <Link to="/pokemon/about">
-                    <li title="About">ABOUT</li>
+                    <li title="Search" onClick={ toggleMenu }><i className="fa fa-search"></i></li>
                 </Link>
             </ul>
         </nav>

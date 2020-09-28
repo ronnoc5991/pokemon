@@ -2,11 +2,15 @@ import React, { useEffect, useState, useRef } from 'react'
 import Pokemon from './Pokemon'
 import Closed from './pokeball-closed.png'
 import Open from './pokeball-open.png'
+import Outline from './pokeoutline.png'
+import gsap from 'gsap';
 
 function Home() {
-  const [numberOfPokemon, setNumberOfPokemon] = useState(42)
+  const [numberOfPokemon, setNumberOfPokemon] = useState(100)
   const [rawPokemon, setRawPokemon] = useState([])
   const [hovering, setHovering] = useState(false)
+
+  var monster = useRef(null);
 
   function getPokemon () {
     fetch(`https://pokeapi.co/api/v2/pokemon?limit=${numberOfPokemon}`)
@@ -15,7 +19,7 @@ function Home() {
 }
 
   function loadMorePokemon () {
-    setNumberOfPokemon(numberOfPokemon => numberOfPokemon + 20 )
+    setNumberOfPokemon(numberOfPokemon => numberOfPokemon + 30 )
   }
 
   useEffect(() => {
@@ -33,6 +37,8 @@ function Home() {
     return (
       <>
         <div className="home main">
+          <div className="background-ball"> <img src={ Outline } alt=""/> </div>
+          <div className="home-title">Pokemon</div>
         { rawPokemon.map(pokemon => (
           <Pokemon  key={ pokemon.name } pokemon={ pokemon } />
         )) }

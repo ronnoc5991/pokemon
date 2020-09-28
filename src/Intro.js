@@ -23,162 +23,162 @@ function Intro() {
     }, [])
 
     return (
-        <div class="container" ref={ el => { container = el } }>
-            <div class="outer"  ref={ el => { outer = el } }>
+        <div className="container" ref={ el => { container = el } }>
+            <div className="outer"  ref={ el => { outer = el } }>
                 
-                <div class="blue-light-outer">
-                <div class="blue-light-inner">
-                    <div class="blue-light-lighter">
-                    <div class="blue-light-lightest"></div>
+                <div className="blue-light-outer">
+                <div className="blue-light-inner">
+                    <div className="blue-light-lighter">
+                    <div className="blue-light-lightest"></div>
                     </div>
-                </div>
-                </div>
-                
-                <div class="red-light-outer">
-                <div class="red-light-lighter">
-                    <div class="red-light-lightest"></div>
                 </div>
                 </div>
                 
-                <div class="yellow-light-outer">
-                <div class="yellow-light-lighter">
-                    <div class="yellow-light-lightest"></div>
+                <div className="red-light-outer">
+                <div className="red-light-lighter">
+                    <div className="red-light-lightest"></div>
                 </div>
                 </div>
                 
-                <div class="green-light-outer">
-                <div class="green-light-lighter">
-                    <div class="green-light-lightest"></div>
+                <div className="yellow-light-outer">
+                <div className="yellow-light-lighter">
+                    <div className="yellow-light-lightest"></div>
                 </div>
                 </div>
                 
-                <div class="flap" ref={ el => { flap = el } }>
-                    <div class="cover"></div>
-                    <div class="trapezoid"></div>
-                    <div class="diagonal"></div>
+                <div className="green-light-outer">
+                <div className="green-light-lighter">
+                    <div className="green-light-lightest"></div>
+                </div>
+                </div>
+                
+                <div className="flap" ref={ el => { flap = el } }>
+                    <div className="cover"></div>
+                    <div className="trapezoid"></div>
+                    <div className="diagonal"></div>
                     
-                    <div class="flap-inside-smaller" ref={ el => { flapInsideSmaller = el } }>
-                    <div class="cover-smaller"></div>
-                    <div class="trapezoid-smaller"></div>
-                    <div class="diagonal-smaller"></div>
-                    </div>
-                    
-                <div class="inside-of-flap" ref={ el => { insideOfFlap = el } }>
-                    
-                    <div class="inside-black-screen">
-                    <div class="shadow"></div>
-                    </div>
-                    
-                    <div class="blue-button-container">
-                    <div class="blue-button">
-                        <div class="shadow"></div>
-                    </div>
-                    <div class="blue-button">
-                        <div class="shadow"></div>
-                    </div>
-                    <div class="blue-button">
-                        <div class="shadow"></div>
-                    </div>
-                    <div class="blue-button">
-                        <div class="shadow"></div>
-                    </div>
-                    <div class="blue-button">
-                        <div class="shadow"></div>
-                    </div>
-                    <div class="blue-button">
-                        <div class="shadow"></div>
-                    </div>
-                    <div class="blue-button">
-                        <div class="shadow"></div>
-                    </div>
-                    <div class="blue-button">
-                        <div class="shadow"></div>
-                    </div>
-                    <div class="blue-button">
-                        <div class="shadow"></div>
-                    </div>
-                    <div class="blue-button">
-                        <div class="shadow"></div>
-                    </div>
+                    <div className="flap-inside-smaller" ref={ el => { flapInsideSmaller = el } }>
+                    <div className="cover-smaller"></div>
+                    <div className="trapezoid-smaller"></div>
+                    <div className="diagonal-smaller"></div>
                     </div>
                     
-                    <div class="small-black-button small-black-button-1">
-                    <div class="shadow"></div>
+                <div className="inside-of-flap" ref={ el => { insideOfFlap = el } }>
+                    
+                    <div className="inside-black-screen">
+                    <div className="shadow"></div>
                     </div>
                     
-                    <div class="small-black-button small-black-button-2">
-                    <div class="shadow"></div>
+                    <div className="blue-button-container">
+                    <div className="blue-button">
+                        <div className="shadow"></div>
                     </div>
-                    
-                    <div class="grey-button-container">
-                    <div class="grey-button">
-                        <div class="shadow"></div>
+                    <div className="blue-button">
+                        <div className="shadow"></div>
                     </div>
-                    <div class="grey-button">
-                        <div class="shadow"></div>
+                    <div className="blue-button">
+                        <div className="shadow"></div>
+                    </div>
+                    <div className="blue-button">
+                        <div className="shadow"></div>
+                    </div>
+                    <div className="blue-button">
+                        <div className="shadow"></div>
+                    </div>
+                    <div className="blue-button">
+                        <div className="shadow"></div>
+                    </div>
+                    <div className="blue-button">
+                        <div className="shadow"></div>
+                    </div>
+                    <div className="blue-button">
+                        <div className="shadow"></div>
+                    </div>
+                    <div className="blue-button">
+                        <div className="shadow"></div>
+                    </div>
+                    <div className="blue-button">
+                        <div className="shadow"></div>
                     </div>
                     </div>
                     
-                    <div class="yellow-button"></div>
-                    
-                    <div class="wide-black-button">
-                    <div class="shadow"></div>
+                    <div className="small-black-button small-black-button-1">
+                    <div className="shadow"></div>
                     </div>
                     
-                    <div class="narrow-black-button">
-                    <div class="shadow"></div>
+                    <div className="small-black-button small-black-button-2">
+                    <div className="shadow"></div>
+                    </div>
+                    
+                    <div className="grey-button-container">
+                    <div className="grey-button">
+                        <div className="shadow"></div>
+                    </div>
+                    <div className="grey-button">
+                        <div className="shadow"></div>
+                    </div>
+                    </div>
+                    
+                    <div className="yellow-button"></div>
+                    
+                    <div className="wide-black-button">
+                    <div className="shadow"></div>
+                    </div>
+                    
+                    <div className="narrow-black-button">
+                    <div className="shadow"></div>
                     </div>
                     
                 </div>
                     
                 </div>
                 
-                <div class="inside">
-                    <div class="cover"></div>
-                    <div class="trapezoid"></div>
-                    <div class="diagonal"></div>
+                <div className="inside">
+                    <div className="cover"></div>
+                    <div className="trapezoid"></div>
+                    <div className="diagonal"></div>
                 
-                    <div class="inside-smaller">
-                    <div class="cover-smaller"></div>
-                    <div class="trapezoid-smaller"></div>
-                    <div class="diagonal-smaller"></div>
+                    <div className="inside-smaller">
+                    <div className="cover-smaller"></div>
+                    <div className="trapezoid-smaller"></div>
+                    <div className="diagonal-smaller"></div>
                     
-                    <div class="screen">
-                        <div class="screen-corner"></div>
-                        <div class="screen-outer">
-                        <div class="dots">
-                            <div class="dot"></div>
-                            <div class="dot"></div>
+                    <div className="screen">
+                        <div className="screen-corner"></div>
+                        <div className="screen-outer">
+                        <div className="dots">
+                            <div className="dot"></div>
+                            <div className="dot"></div>
                         </div>
-                        <div class="red-button"></div>
-                        <div class="bars-container">
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
+                        <div className="red-button"></div>
+                        <div className="bars-container">
+                            <div className="bar"></div>
+                            <div className="bar"></div>
+                            <div className="bar"></div>
                         </div>
-                        <div class="screen-inner"  ref={ el => { screenInner = el } }></div>
+                        <div className="screen-inner"  ref={ el => { screenInner = el } }></div>
                     </div>
                     </div>
                     
-                    <div class="black-round-button"></div>
+                    <div className="black-round-button"></div>
                     
-                    <div class="small-red-button">
-                        <div class="shadow"></div>
+                    <div className="small-red-button">
+                        <div className="shadow"></div>
                     </div>
                     
-                    <div class="small-blue-button">
-                        <div class="shadow"></div>
+                    <div className="small-blue-button">
+                        <div className="shadow"></div>
                     </div>
                     
-                    <div class="green-rectangle">
-                        <div class="shadow"></div>
+                    <div className="green-rectangle">
+                        <div className="shadow"></div>
                     </div>
                     
-                    <div class="d-pad">
-                        <div class="vertical"></div>
-                        <div class="horizontal"></div>
-                        <div class="center">
-                        <div class="circle"></div>
+                    <div className="d-pad">
+                        <div className="vertical"></div>
+                        <div className="horizontal"></div>
+                        <div className="center">
+                        <div className="circle"></div>
                         </div>
                     </div>
                     

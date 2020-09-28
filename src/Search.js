@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ReactComponent as PokeBall } from './pokeball.svg'
 import Go from './go.png'
+import Outline from './pokeoutline.png'
 
 function Search() {
 
@@ -68,6 +69,7 @@ function Search() {
 
     return (
         <div className="search main" >
+            <div className="background-ball"> <img src={ Outline } alt=""/> </div>
             <form>
                 <label>
                     <input type="text" onChange={ updateSearchTerm } value={ searchTerm } placeholder="Search Pokemon by ID or name" />

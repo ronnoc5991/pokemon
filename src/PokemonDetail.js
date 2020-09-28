@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Outline from './pokeoutline.png'
 
 function PokemonDetail({ match }) {
 
@@ -190,6 +191,7 @@ function PokemonDetail({ match }) {
 
     return (
         <div className="detail main">
+            <div className="background-ball"> <img src={ Outline } alt=""/> </div>
 
             <div className="name-container" >
                 <div className="pokemon-name" >
