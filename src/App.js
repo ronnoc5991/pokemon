@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
-import Nav from './Nav'
-import Home from './Home'
-import Search from './Search'
-import About from './About'
-import PokemonDetail from './PokemonDetail'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Nav from './Nav';
+import Intro from './Intro';
+import Home from './Home';
+import Search from './Search';
+import About from './About';
+import PokemonDetail from './PokemonDetail';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
     <Router> 
       <div className="App">
         <Nav/>
+        <Intro/>
         <Switch>
           <Route 
             path="/pokemon/" 

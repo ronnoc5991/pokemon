@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Pokemon from './Pokemon'
 import Closed from './pokeball-closed.png'
 import Open from './pokeball-open.png'
