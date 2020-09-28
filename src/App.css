@@ -31,7 +31,7 @@
 
 .App {
   text-align: center;
-  background-image: url(./background.jpg);
+  background-color: rgb(0, 215, 252);
 }
 
 .main {
@@ -43,77 +43,103 @@
 
 nav {
   position: fixed;
-  height: 8vh;
-  background-color: white;
-  box-shadow: 0px 0px 5px 5px rgb(107, 107, 107);
-  width: 100vw;
+  height: 100vh;
+  width: 10vw;
   top: 0;
+  left: 0;
   z-index: 10;
 }
 
-.logo-container {
-  height: 100%;
-  display: flex;
-  z-index: 3;
-  position: absolute;
-  left: 0;
-  padding-left: 1vw;
+.bar-container {
+  position: fixed;
+  height: 7vh;
+  width: 7vh;
+  top: 2vh;
+  left: 2vh;
+  cursor: pointer;
+  z-index: 5;
+  transform-origin: center;
 }
 
-.logo-container img {
-  height: 80%;
-  margin: auto;
+.open-container {
+  height: 7vh;
+  width: 7vh;
+  border-radius: 50%;
+  background-color: var(--pokemon-red);
+}
+
+.bar {
+  position: absolute;
+  width: 5vh;
+  height: .8vh;
+  background-color: white;
+  transition: all 300ms ease-in-out;
+  left: 50%;
+  transform: translate(-50%, 0%)
+}
+
+.bar-1 {
+  top: 1.5vh;
+}
+
+.open-1 {
+  transform: translate(-50%, -50%) rotate(45deg);
+  top: 50%;
+  left: 50%;
+  background-color: black;
+}
+
+.bar-2 {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.open-2 {
+  background-color: transparent;
+}
+
+.bar-3 {
+  bottom: 1.5vh;
+}
+
+.open-3 {
+  transform: translate(-50%, -50%) rotate(-45deg);
+  top: 50%;
+  left: 50%;
+  background-color: black;
 }
 
 nav ul {
-  position: absolute;
-  right: 1vw;
+  position: fixed;
+  left: 0;
   top: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  width: 180px;
-  height: 8vh;
+  width: 11vh;
+  height: 0;
   justify-content: space-around;
-  margin: 0
+  margin: 11vh 0 0 0;
+  transition: all 300ms ease-in-out;
+  box-sizing: border-box;
+  border: 1px solid black;
+  padding: 0;
 }
 
-nav li {
+.open-nav {
+  left: 0;
+  height: 50vh;
+}
+
+nav a li {
+  all: unset;
   list-style-type: none;
+  color: black;
+  font-size: 12px;
 }
 
-nav li:hover {
-  color: red;
-}
-
-.sliding-rect {
-  position: absolute;
-  right: 10px;
-  height: 100%;
-  width: 180px;
-  transition: all ease-in-out 300ms;
-  background-color: white;
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
-}
-
-.sliding-rect svg {
-  position: absolute;
-  height: 100%;
-  right: 0;
-  transform: rotate(0);
-  transition: all ease-in-out 300ms;
-}
-
-ul:hover svg {
-  transform: rotate(-400deg);
-}
-
-ul:hover .sliding-rect {
-  transform: translateX(-160px);
-}
-
-nav a {
-  max-width: 120px;
+nav a:hover li {
+  transform: scale(1.1);
 }
 
 /* ABOUT PAGE */
@@ -142,62 +168,63 @@ nav a {
 
 .home {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 225px);
+  grid-template-columns: repeat(auto-fill, 280px);
   justify-content: center;
-  row-gap: 30px;
-  column-gap: 22.5px;
-  width: 90%;
+  row-gap: 15px;
+  column-gap: 15px;
+  width: 95%;
   margin-left: auto;
   margin-right: auto;
   background-color: transparent;
 }
 
 .monster-home-display {
-  width: 225px;
-  height: 281.25px;
+  width: 280px;
+  height: 200px;
   box-sizing: border-box;
-  border-radius: 50px;
-  display: grid;
-  grid-template-rows: 180px 1fr;
-  justify-content: center;
-  align-items: center;
+  border-radius: 20px;
   position: relative;
   transition: all 200ms ease-in-out;
   background-color: rgb(255,255,255);
-  box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.3);
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-style: italic;
 }
 
 .monster-home-display:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 8px 5px rgba(0,0,0,0.5);
+  transform: translate(0, -5px);
 }
 
 .monster-home-display svg {
-  height: 100px;
-  margin: auto;
+  position: absolute;
+  height: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.monster-info {
-  grid-row: 2 / 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 90%;
-}
-
-.monster-info h1 {
+.monster-name {
   margin: 0;
-  font-size: 24px;
+  font-size: 14px;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 5%;
+}
+
+.monster-id {
+  margin: 0;
+  font-size: 25px;
+  color: rgba(0,0,0,0.4);
+  position: absolute;
+  top: 10%;
+  right: 5%;
 }
 
 .monster-home-display img {
-  position: relative;
-  width: 90%;
-  margin: 0 auto;
-  top: -10px;
-  filter: drop-shadow(12px 12px 7px rgba(0,0,0,0.5));
+  position: absolute;
+  width: 50%;
+  bottom: 5%;
+  right: 5%;
 }
 
 a {
@@ -208,6 +235,16 @@ a {
 a:visited {
   all:unset;
   color: black;
+}
+
+.monster-type {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  bottom: 5%;
+  left: 5%;
+  height: 30%;
 }
 
 .monster-type img {
@@ -1027,11 +1064,6 @@ a:visited {
   background-color: rgb(92, 92, 92);
   top: 85%;
 }
-
-
-
-
-
 
 .inside {
   box-sizing: border-box;

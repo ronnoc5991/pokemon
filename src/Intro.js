@@ -17,7 +17,7 @@ function Intro() {
         tl.fromTo(insideOfFlap, {opacity: 0}, {opacity: 1, duration: .1, delay: '-1.3'});
         tl.to(outer, {scaleX: 2, scaleY: 2, duration: 1});
         tl.to(screenInner, {backgroundColor: 'rgb(0, 215, 252)'});
-        tl.to(outer, {scaleX: 10, scaleY: 10, duration: 1});
+        tl.to(outer, {scaleX: 15, scaleY: 15, duration: 1});
         tl.to(container, {opacity: 0, duration: .5});
         tl.to(container, {top: '-100vh', duration: .1} )
     }, [])

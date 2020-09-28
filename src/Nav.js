@@ -1,28 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ReactComponent as PokeBall } from './pokeball.svg'
-import logo from './pokemon.png'
 
 function Nav() {
+
+    const [open, setOpen] = useState(false);
+
+    function toggleMenu () {
+        setOpen(!open);
+    }
+
     return (
         <nav>
-            <ul>
-                <div className="sliding-rect">
-                    <PokeBall />
-                </div>
+            <div className={`bar-container ${open ? 'open-container' : ''}`} onClick={ toggleMenu }>
+                <div className={`bar ${open ? 'open-1' : 'bar-1'}`} onClick={ toggleMenu }></div>
+                <div className={`bar ${open ? 'open-2' : 'bar-2'}`} onClick={ toggleMenu }></div>
+                <div className={`bar ${open ? 'open-3' : 'bar-3'}`} onClick={ toggleMenu }></div>
+            </div>
+            <ul className={`${open ? 'open-nav' : ''}`}>
                 <Link to="/pokemon/">
-                    <li title="Home" ><i className="fa fa-home fa-lg"></i></li>
+                    <li title="Home" >HOME</li>
                 </Link>
                 <Link to="/pokemon/search"> 
-                    <li title="Search"><i className="fa fa-search fa-lg"></i></li>
+                    <li title="Search">SEARCH</li>
                 </Link>
                 <Link to="/pokemon/about">
-                    <li title="About"><i className="fa fa-question-circle fa-lg"></i></li>
+                    <li title="About">ABOUT</li>
                 </Link>
             </ul>
-            <div className="logo-container">
-                    <img src={ logo } alt=""/>
-            </div>
         </nav>
     )
 }

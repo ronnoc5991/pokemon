@@ -53,7 +53,7 @@ function Pokemon(props) {
     }
 
     var STYLES = { 
-        background: `radial-gradient(circle, rgba(255,255,255,1) 40%, var(--type-${types[0]}) 100%)`,
+        backgroundColor: `var(--type-${types[0]})`,
     }
 
     function makeIDNumber (id) {
@@ -79,21 +79,19 @@ function Pokemon(props) {
                 { isLoading ? <PokeBall /> : <img src={`https://pokeres.bastionbot.org/images/pokemon/${monster.id}.png`} alt=""/> }
                 
 
-                <div className="monster-info" >
-                    
+                <div className="monster-name" >
                     <h1> { props.pokemon.name.charAt(0).toUpperCase() + props.pokemon.name.slice(1) } </h1>
+                </div>
 
 
-                        <div className="monster-id" >
-                            { makeIDNumber(monster.id) }
-                        </div>
+                <div className="monster-id" >
+                    { makeIDNumber(monster.id) }
+                </div>
 
-                        <div className="monster-type" >
-                            { types.map(type =>
-                                <img title={ type.charAt(0).toUpperCase() + type.slice(1) } src={ typeEmblems[type] } alt=""/>
-                            )}          
-                        </div>
-
+                <div className="monster-type" >
+                    { types.map(type =>
+                        <img title={ type.charAt(0).toUpperCase() + type.slice(1) } src={ typeEmblems[type] } alt=""/>
+                    )}          
                 </div>
 
             </div>
