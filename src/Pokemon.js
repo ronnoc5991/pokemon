@@ -68,14 +68,12 @@ function Pokemon(props) {
         }
         
     }
-     
 
     return (
         <Link to={ `/pokemon/${monster.id}` } >
-            <div key={ monster.id } style={STYLES} className="monster-home-display" >
+            <div key={ monster.id } style={STYLES} className={`monster-home-display ${isLoading ? '' : 'loaded'}`} >
                 
                 { isLoading ? '' : <img src={`https://pokeres.bastionbot.org/images/pokemon/${monster.id}.png`} alt="" /> }
-                
 
                 <div className="ball-container"></div>
 

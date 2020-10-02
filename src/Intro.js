@@ -1,25 +1,33 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import Outline from './pokeoutline.png'
 
 function Intro() {
 
-    var flap = useRef(null);
-    var flapInsideSmaller = useRef(null);
-    var insideOfFlap = useRef(null);
     var outer = useRef(null);
     var screenInner = useRef(null);
     var container = useRef(null);
+    var screenOn = useRef(null);
+    var ball = useRef(null);
 
     useEffect(() => {
         const tl = gsap.timeline();
-        tl.fromTo(flap, {rotationY: 0}, {rotationY: 180, duration: 2, delay: 1.5});
-        tl.fromTo(flapInsideSmaller, {opacity: 0}, {opacity: 1, duration: .1, delay: '-1.1'});
-        tl.fromTo(insideOfFlap, {opacity: 0}, {opacity: 1, duration: .1, delay: '-1.3'});
-        tl.to(outer, {scaleX: 2, scaleY: 2, duration: 1});
-        tl.to(screenInner, {backgroundColor: 'rgb(0, 215, 252)'});
-        tl.to(outer, {scaleX: 15, scaleY: 15, duration: 1});
+        tl.fromTo(screenOn, {opacity: 0}, {opacity: 1, duration: .1, delay: 3});
+        tl.fromTo(screenOn, {width: '1%', height: '1%'}, {width: '100%', height: '2%', duration: .1});
+        tl.to(screenInner, {backgroundColor: 'rgb(0, 215, 252)', duration: .2});
+        tl.fromTo(ball, {opacity: 0} ,{opacity: 1, duration:.2});
+        tl.to(ball, {opacity: 0, duration: .3});
+        tl.to(ball, {opacity: 1, duration: .3});
+        tl.to(ball, {opacity: 0, duration: .3});
+        tl.to(ball, {opacity: 1, duration: .3});
+        tl.to(ball, {opacity: 0, duration: .3});
+        tl.to(ball, {opacity: 1, duration: .3});
+        tl.to(ball, {opacity: 0, duration: .3});
+        tl.to(ball, {opacity: 1, duration: .3});
+        tl.to(outer, {scaleX: 15, scaleY: 15, duration: 1, delay: 1});
+        tl.to(ball, {scale: 10, duration:.1, delay: '-.5'})
         tl.to(container, {opacity: 0, duration: .5});
-        tl.to(container, {top: '-100vh', duration: .1} )
+        tl.to(container, {top: '-100vh', duration: .1});
     }, [])
 
     return (
@@ -52,18 +60,18 @@ function Intro() {
                 </div>
                 </div>
                 
-                <div className="flap" ref={ el => { flap = el } }>
+                <div className="flap">
                     <div className="cover"></div>
                     <div className="trapezoid"></div>
                     <div className="diagonal"></div>
                     
-                    <div className="flap-inside-smaller" ref={ el => { flapInsideSmaller = el } }>
+                    <div className="flap-inside-smaller">
                     <div className="cover-smaller"></div>
                     <div className="trapezoid-smaller"></div>
                     <div className="diagonal-smaller"></div>
                     </div>
                     
-                <div className="inside-of-flap" ref={ el => { insideOfFlap = el } }>
+                <div className="inside-of-flap">
                     
                     <div className="inside-black-screen">
                     <div className="shadow"></div>
@@ -156,7 +164,10 @@ function Intro() {
                             <div className="bar"></div>
                             <div className="bar"></div>
                         </div>
-                        <div className="screen-inner"  ref={ el => { screenInner = el } }></div>
+                        <div className="screen-inner"  ref={ el => { screenInner = el } }>
+                            <div class="screen-on" ref={ el => { screenOn = el } }></div>
+                            <div className="loading-ball" ref={ el => { ball = el } } ><img src={ Outline } alt=""/></div>
+                        </div>
                     </div>
                     </div>
                     
