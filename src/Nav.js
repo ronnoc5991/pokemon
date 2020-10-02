@@ -12,15 +12,15 @@ function Nav() {
     return (
         <nav>
             <div className={`bar-container ${open ? 'open-container' : ''}`} onClick={ toggleMenu }>
-                <div className={`bar ${open ? 'open-1' : 'bar-1'}`} onClick={ toggleMenu }></div>
-                <div className={`bar ${open ? 'open-2' : 'bar-2'}`} onClick={ toggleMenu }></div>
-                <div className={`bar ${open ? 'open-3' : 'bar-3'}`} onClick={ toggleMenu }></div>
+                <div className={`bar bar-1 ${open ? 'open-1' : ''}`} onClick={ toggleMenu }></div>
+                <div className={`bar bar-2 ${open ? 'open-2' : ''}`} onClick={ toggleMenu }></div>
+                <div className={`bar bar-3 ${open ? 'open-3' : ''}`} onClick={ toggleMenu }></div>
             </div>
             <ul className={`${open ? 'open-nav' : ''}`}>
-                <Link to="/pokemon/">
+                <Link to="/pokemon/" onClick={ toggleMenu }>
                     <li title="Home" onClick={ toggleMenu }><i className="fa fa-home"></i></li>
                 </Link>
-                <Link to="/pokemon/search"> 
+                <Link to="/pokemon/search" onClick={ toggleMenu }> 
                     <li title="Search" onClick={ toggleMenu }><i className="fa fa-search"></i></li>
                 </Link>
             </ul>

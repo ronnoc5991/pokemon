@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ReactComponent as PokeBall } from './pokeball.svg'
 
 function Pokemon(props) {
 
@@ -26,14 +25,13 @@ function Pokemon(props) {
     const [types, setTypes] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
-
     
-      function getDetails () {
-        setIsLoading(true)
-        fetch(props.pokemon.url)
-            .then(response => response.json())
-            .then(data => setMonster(data))
-      }
+    function getDetails () {
+    setIsLoading(true)
+    fetch(props.pokemon.url)
+        .then(response => response.json())
+        .then(data => setMonster(data))
+    }
     
     useEffect(() => {
         getDetails()
@@ -76,7 +74,7 @@ function Pokemon(props) {
         <Link to={ `/pokemon/${monster.id}` } >
             <div key={ monster.id } style={STYLES} className="monster-home-display" >
                 
-                { isLoading ? '' : <img src={`https://pokeres.bastionbot.org/images/pokemon/${monster.id}.png`} alt=""/> }
+                { isLoading ? '' : <img src={`https://pokeres.bastionbot.org/images/pokemon/${monster.id}.png`} alt="" /> }
                 
 
                 <div className="ball-container"></div>

@@ -23,6 +23,7 @@ function Search() {
     })
 
     async function getSearchResults (e) {
+        hideButton();
         e.preventDefault();
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
@@ -47,6 +48,9 @@ function Search() {
         }
     }, [searchTerm])
 
+    function hideButton () {
+        setHidden(true);
+    }
 
     function updateSearchTerm (e) {
         setSearchTerm(e.target.value)
