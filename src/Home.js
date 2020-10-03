@@ -5,7 +5,7 @@ import Open from './pokeball-open.png'
 import Outline from './pokeoutline.png'
 
 function Home() {
-  const [numberOfPokemon, setNumberOfPokemon] = useState(100)
+  const [numberOfPokemon, setNumberOfPokemon] = useState(151)
   const [rawPokemon, setRawPokemon] = useState([])
   const [hovering, setHovering] = useState(false)
 

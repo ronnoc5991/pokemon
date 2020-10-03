@@ -208,24 +208,16 @@
     border-radius: 20px;
     position: relative;
     transition: all 200ms ease-in-out;
-    box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.3);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     overflow: hidden;
     background-color: black;
     color: white;
+    opacity: 0;
   }
   
   .monster-home-display:hover {
     transform: translate(0, -3px);
   }
-  
-  // .monster-home-display svg {
-  //   position: absolute;
-  //   height: 50%;
-  //   left: 50%;
-  //   top: 50%;
-  //   transform: translate(-50%, -50%);
-  // }
   
   .monster-name {
     margin: 0;

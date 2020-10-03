@@ -24,7 +24,6 @@ function Pokemon(props) {
     const [monster, setMonster] = useState({})
     const [types, setTypes] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-
     
     function getDetails () {
     setIsLoading(true)
