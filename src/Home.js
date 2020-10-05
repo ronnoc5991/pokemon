@@ -3,9 +3,10 @@ import Pokemon from './Pokemon'
 import Closed from './pokeball-closed.png'
 import Open from './pokeball-open.png'
 import Outline from './pokeoutline.png'
+import gsap from 'gsap';
 
 function Home() {
-  const [numberOfPokemon, setNumberOfPokemon] = useState(151)
+  const [numberOfPokemon, setNumberOfPokemon] = useState(24)
   const [rawPokemon, setRawPokemon] = useState([])
   const [hovering, setHovering] = useState(false)
 

@@ -238,8 +238,6 @@ nav a:hover li {
   position: relative;
   -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
-  -webkit-box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.3);
-          box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.3);
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   overflow: hidden;
   background-color: black;
@@ -258,6 +256,7 @@ nav a:hover li {
   position: absolute;
   top: 0;
   left: 5%;
+  opacity: 0;
 }
 
 .monster-id {
@@ -268,6 +267,7 @@ nav a:hover li {
   position: absolute;
   top: 11%;
   right: 5%;
+  opacity: 0;
 }
 
 .monster-home-display .ball-container {
@@ -289,13 +289,7 @@ nav a:hover li {
   bottom: 5%;
   right: 5%;
   z-index: 5;
-  -webkit-transition: opacity 300ms ease-in-out;
-  transition: opacity 300ms ease-in-out;
   opacity: 0;
-}
-
-.loaded img {
-  opacity: 1;
 }
 
 a {
@@ -651,6 +645,7 @@ a:visited {
   -ms-flex-preferred-size: 34%;
       flex-basis: 34%;
   min-width: 300px;
+  opacity: 0;
 }
 
 .detail-image-container img {
@@ -679,6 +674,7 @@ a:visited {
   background-color: rgba(255, 255, 255, 0.2);
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
+  opacity: 0;
 }
 
 .info-header {
@@ -766,6 +762,7 @@ a:visited {
   background-color: rgba(255, 255, 255, 0.2);
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
+  opacity: 0;
 }
 
 .header {
@@ -875,6 +872,7 @@ a:visited {
   background-color: rgba(255, 255, 255, 0.2);
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
+  opacity: 0;
 }
 
 .evolution-title {

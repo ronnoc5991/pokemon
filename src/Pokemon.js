@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import gsap from 'gsap';
 
 function Pokemon(props) {
 
@@ -23,15 +24,22 @@ function Pokemon(props) {
 
     const [monster, setMonster] = useState({})
     const [types, setTypes] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
+
     
+    var pokeDiv = useRef(null);
+
+    useEffect(() => {
+        const tl = gsap.timeline();
+        tl.fromTo(pokeDiv, {opacity: 0}, {opacity: 1, duration: .5})
+    }, [isLoading])
+
     function getDetails () {
-    setIsLoading(true)
     fetch(props.pokemon.url)
         .then(response => response.json())
         .then(data => setMonster(data))
     }
-    
+
     useEffect(() => {
         getDetails()
     }, [])
@@ -63,31 +71,44 @@ function Pokemon(props) {
                 return `#${id}`
             }
         } else {
-            return '#000'
+            return ''
         }
         
     }
 
+    var image = useRef(null);
+    var pokeName = useRef(null);
+    var pokeID = useRef(null);
+    var pokeTypes = useRef(null);
+
+    function fadeIn () {
+        const line = gsap.timeline();
+        line.fromTo(image, {opacity: 0, x: 100}, {opacity: 1, x: 0, duration: 1, delay: .5});
+        line.fromTo(pokeName, {opacity: 0, x: -100}, {opacity: 1, x: 0, duration: .3});
+        line.fromTo(pokeID, {opacity: 0, y: -100}, {opacity: 1, y: 0, duration: .3});
+        line.fromTo(pokeTypes, {opacity: 0, y: 100}, {opacity: 1, y: 0, duration: .3});
+    }
+
     return (
-        <Link to={ `/pokemon/${monster.id}` } >
-            <div key={ monster.id } style={STYLES} className={`monster-home-display ${isLoading ? '' : 'loaded'}`} >
+        <Link to={ `/pokemon/${monster.id}` } ref={ el => { pokeDiv = el } } >
+            <div key={ monster.id } style={STYLES} className='monster-home-display' >
                 
-                { isLoading ? '' : <img src={`https://pokeres.bastionbot.org/images/pokemon/${monster.id}.png`} alt="" /> }
+                { isLoading ? '' : <img onLoad={ fadeIn } ref={ el => { image = el } } src={`https://pokeres.bastionbot.org/images/pokemon/${monster.id}.png`} alt="" /> }
 
                 <div className="ball-container"></div>
 
-                <div className="monster-name" >
+                <div className="monster-name" ref={ el => { pokeName = el } }>
                     <h1> { props.pokemon.name.charAt(0).toUpperCase() + props.pokemon.name.slice(1) } </h1>
                 </div>
 
 
-                <div className="monster-id" >
+                <div className="monster-id" ref={ el => { pokeID = el } }>
                     { makeIDNumber(monster.id) }
                 </div>
 
-                <div className="monster-type" >
+                <div className="monster-type">
                     { types.map(type =>
-                        <img title={ type.charAt(0).toUpperCase() + type.slice(1) } key={ type }  src={ typeEmblems[type] } alt=""/>
+                        <img ref={ el => { pokeTypes = el } } title={ type.charAt(0).toUpperCase() + type.slice(1) } key={ type }  src={ typeEmblems[type] } alt=""/>
                     )}          
                 </div>
 

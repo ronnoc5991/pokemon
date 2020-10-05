@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import Outline from './pokeoutline.png'
+import gsap from 'gsap';
 
 function PokemonDetail({ match }) {
 
@@ -81,13 +82,11 @@ function PokemonDetail({ match }) {
     var evolutionArray = []
 
     function findEvolutions (passedChain) {
-        // setChainNames(chainNames => chainNames.concat([passedChain.species.name]))
         evolutionArray.push(passedChain.species.name)
         if (passedChain.evolves_to.length > 0) {
             passedChain.evolves_to.map((evolution, index) => 
                 findEvolutions(evolution)
             )
-            // findEvolutions(passedChain.evolves_to[0])
         }
         setChainNames(evolutionArray);
     }
@@ -111,10 +110,7 @@ function PokemonDetail({ match }) {
             } else {
                 return `#${id}`
             }
-        } else {
-            return '#000'
         }
-        
     }
 
     function getHeight (height) {
@@ -189,15 +185,33 @@ function PokemonDetail({ match }) {
         }
     }, [chainNames])
 
+    // Refs
+
+    var pokeName = useRef(null);
+    var pokeNum = useRef(null);
+    var pokeImage = useRef(null);
+    var pokeInfo = useRef(null);
+    var pokeStats = useRef(null);
+    var pokeEvo = useRef(null);
+
+    useEffect(() => {
+        gsap.fromTo(pokeName, {opacity: 0}, {opacity: 1, duration: 1})
+        gsap.fromTo(pokeNum, {opacity: 0}, {opacity: 1, duration: 1})
+        gsap.fromTo(pokeImage, {opacity: 0}, {opacity: 1, duration: 1});
+        gsap.fromTo(pokeInfo, {opacity: 0}, {opacity: 1, duration: 1});
+        gsap.fromTo(pokeStats, {opacity: 0}, {opacity: 1, duration: 1});
+        gsap.fromTo(pokeEvo, {opacity: 0}, {opacity: 1, duration: 1});
+    }, [details])
+
     return (
         <div className="detail main">
             <div className="background-ball"> <img src={ Outline } alt=""/> </div>
 
             <div className="name-container" >
-                <div className="pokemon-name" >
+                <div className="pokemon-name" ref={ el => { pokeName = el } } >
                     { details.name.charAt(0).toUpperCase() + details.name.slice(1) }
                 </div>
-                <div className="pokemon-number" >
+                <div className="pokemon-number" ref={ el => { pokeNum = el } }>
                     { makeIDNumber(details.id) }
                 </div>
             </div>
@@ -206,12 +220,12 @@ function PokemonDetail({ match }) {
 
 
 
-                <div className="detail-image-container" >
+                <div className="detail-image-container" ref={ el => { pokeImage = el } }>
                     <img src={`https://pokeres.bastionbot.org/images/pokemon/${match.params.id}.png`} alt=""/>
                 </div>
 
 
-            <div className="info-container" >
+            <div className="info-container" ref={ el => { pokeInfo = el } }>
                 <div className="info-piece" >
                     <div className="info-header" >
                         Height
@@ -252,7 +266,7 @@ function PokemonDetail({ match }) {
                 </div>
             </div>
 
-                <div className="base-stats" >
+                <div className="base-stats" ref={ el => { pokeStats = el } } >
 
                     <div className="header" >
                         <h4>Base Stats</h4>
@@ -326,7 +340,7 @@ function PokemonDetail({ match }) {
 
                 </div>
 
-                <div className="evolutions-container" >
+                <div className="evolutions-container" ref={ el => { pokeEvo = el } }>
                     <div className="evolution-title" >
                         Evolution Chain
                     </div>
