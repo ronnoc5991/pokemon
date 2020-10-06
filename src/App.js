@@ -13,7 +13,7 @@ function App() {
     <Router> 
       <div className="App">
         <Nav/>
-        {/* <Intro/> */}
+        <Intro/>
         <Switch>
           <Route 
             path="/pokemon/" 

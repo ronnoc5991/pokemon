@@ -83,10 +83,10 @@ function Pokemon(props) {
 
     function fadeIn () {
         const line = gsap.timeline();
-        line.fromTo(image, {opacity: 0, x: 100}, {opacity: 1, x: 0, duration: 1, delay: .5});
+        line.fromTo(image, {opacity: 0, x: 100}, {opacity: 1, x: 0, duration: .8, delay: .5});
         line.fromTo(pokeName, {opacity: 0, x: -100}, {opacity: 1, x: 0, duration: .3});
-        line.fromTo(pokeID, {opacity: 0, y: -100}, {opacity: 1, y: 0, duration: .3});
-        line.fromTo(pokeTypes, {opacity: 0, y: 100}, {opacity: 1, y: 0, duration: .3});
+        line.fromTo(pokeID, {opacity: 0, y: -100}, {opacity: 1, y: 0, duration: .3, delay: '-.3'});
+        line.fromTo(pokeTypes, {opacity: 0, y: 100}, {opacity: 1, y: 0, duration: .3, delay: '-.3'});
     }
 
     return (

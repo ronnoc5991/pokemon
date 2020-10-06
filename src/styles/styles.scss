@@ -721,804 +721,165 @@
   
   
   
-  /* INTRO STYLES */
-  
-  
-  .container {
-    width: 100vw;
-    height: 100vh;
-    background-color: grey;
+  /* ------------------------------------- INTRO STYLES ------------------------------------- */
+
+  .Intro {
     position: fixed;
     top: 0;
     left: 0;
-    overflow: hidden;
-    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    z-index: 20;
   }
   
   .outer {
-    box-sizing: border-box;
-    height: 85vmin;
-    width: 60vmin;
-    border: 1vmin solid rgb(88, 72, 74);
-    border-radius: 5vmin;
+    opacity: 0;
+    position: absolute;
+    height: 50vmin;
+    width: 100vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: end;
+  }
+  
+  .container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(232, 72, 72);
-    transform-style: preserve-3d;
-    perspective: 1500px;
-  }
-  
-  .blue-light-outer {
-    box-sizing: border-box;
-    height: 10vmin;
-    width: 10vmin;
-    border: .5vmin solid black;
+    width: 50vmin;
+    height: 50vmin;
     border-radius: 50%;
-    position: absolute;
-    top: 2vmin;
-    left: 5vmin;
-    background-color: rgb(230, 230, 230);
+    overflow: hidden;
+    perspective: 1200px;
+    perspective-origin: 50% 50%;
+    // animation: slideIn 3000ms;
   }
   
-  .blue-light-inner {
-    box-sizing: border-box;
+  .circle {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
-    height: 80%;
-    border: .5vmin solid black;
-    background-color: rgb(45, 68, 153);
+    width: 50vmin;
+    height: 50vmin;
     border-radius: 50%;
     overflow: hidden;
-  }
-  
-  .blue-light-lighter { 
-    box-sizing: border-box;
-    position: absolute;
-    top: 35%;
-    left: 35%;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(77, 101, 175);
-  }
-  
-  .blue-light-lightest {
-    box-sizing: border-box;
-    position: absolute;
-    top: 48%;
-    left: 48%;
-    width: 40%;
-    height: 40%;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(199, 202, 229);
-  }
-  
-  .red-light-outer {
-    box-sizing: border-box;
-    height: 3.5vmin;
-    width: 3.5vmin;
-    border: .5vmin solid black;
-    border-radius: 50%;
-    position: absolute;
-    top: 2vmin;
-    left: 20vmin;
-    background-color: rgb(154, 32, 29);
-    overflow: hidden;
-  }
-  
-  .red-light-lighter {
-    box-sizing: border-box;
-    position: absolute;
-    top: 35%;
-    left: 35%;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(231, 32, 44);
-  }
-  
-  .red-light-lightest {
-    box-sizing: border-box;
-    position: absolute;
-    top: 48%;
-    left: 48%;
-    width: 40%;
-    height: 40%;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(249, 198, 180);
-  }
-  
-  .yellow-light-outer {
-    box-sizing: border-box;
-    height: 3.5vmin;
-    width: 3.5vmin;
-    border: .5vmin solid black;
-    border-radius: 50%;
-    position: absolute;
-    top: 2vmin;
-    left: 25vmin;
-    background-color: rgb(149, 137, 55);
-    overflow: hidden;
-  }
-  
-  .yellow-light-lighter {
-    box-sizing: border-box;
-    position: absolute;
-    top: 35%;
-    left: 35%;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(249, 237, 47);
-  }
-  
-  .yellow-light-lightest {
-     box-sizing: border-box;
-    position: absolute;
-    top: 48%;
-    left: 48%;
-    width: 40%;
-    height: 40%;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(255, 252, 203);
-  }
-  
-  .green-light-outer {
-    box-sizing: border-box;
-    height: 3.5vmin;
-    width: 3.5vmin;
-    border: .5vmin solid black;
-    border-radius: 50%;
-    position: absolute;
-    top: 2vmin;
-    left: 30vmin;
-    background-color: rgb(36, 104, 57);
-    overflow: hidden;
-  }
-  
-  .green-light-lighter {
-    box-sizing: border-box;
-    position: absolute;
-    top: 35%;
-    left: 35%;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(24, 151, 72);
-  }
-  
-  .green-light-lightest {
-    box-sizing: border-box;
-    position: absolute;
-    top: 48%;
-    left: 48%;
-    width: 40%;
-    height: 40%;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(203, 219, 198);
-  }
-  
-  .flap {
-    box-sizing: border-box;
-    position: absolute;
-    bottom: -1vmin;
-    left: -1vmin;
-    height: 65vmin;
-    width: 60vmin;
-    border-bottom-left-radius: 5vmin;
-    border-bottom-right-radius: 5vmin;
-    border: 1vmin solid rgb(88, 72, 74);
-    background-color: rgb(232, 72, 72);
-    transform-origin: right;
-    transition: transform 300ms linear;
-    z-index: 50;
-    transform: rotateY(180deg);
-  }
-  
-  .trapezoid {
-    box-sizing: border-box;
-    position: absolute;
-    height: 9vmin;
-    width: 20vmin;
-    right: -1vmin;
-    top: -8vmin;
-    border-top: .8vmin solid rgb(88, 72, 74);
-    border-right: 1vmin solid rgb(88, 72, 74);
-    background-color: rgb(232, 72, 72);
-  }
-  
-  .diagonal {
-    box-sizing: border-box;
-    position: absolute;
-    height: 9vmin;
-    width: 20vmin;
-    right: 12.9vmin;
-    transform: rotate(-45deg);
-    top: -2.2vmin;
-    border-top: 1vmin solid rgb(88, 72, 74);
-    background-color: rgb(232, 72, 72);
-  }
-  
-  .cover {
-    box-sizing: border-box;
-    position: absolute;
-    height: 10vmin;
-    width: 100%;
-    background-color: rgb(232, 72, 72);
-    top: -.1vmin;
-    left: 0;
+    background-color: transparent;
+    box-shadow: -.7vmin -1vmin 2vmin .1vmin #ccc inset;
     z-index: 5;
+    background: radial-gradient(circle at 15vmin 15vmin, rgba(255, 255, 255, .05) 5%, #000);
   }
   
-  .inside-black-screen {
-    width: 70%;
-    height: 18%;
-    left: 50%;
-    top: 12.5%;
-    transform: translate(-50%, 0);
-    background-color: rgb(102, 102, 102);
-    box-sizing: border-box;
-    border: 1vmin solid var(--grey);
-    border-radius: 1vmin;
-    position: absolute;
-    z-index: 100;
-    overflow: hidden;
-  }
-  
-  .inside-black-screen .shadow {
-    position: absolute;
-    width: 100%;
-    height: 70%;
-    border-radius: 50%;
-    background-color: rgb(92, 92, 92);
-    top: 85%;
-  }
-  
-  .blue-button-container {
-    width: 70%;
-    height: 18%;
-    left: 50%;
-    top: 35%;
-    transform: translate(-50%, 0);
-    box-sizing: border-box;
-    border: .7vmin solid var(--grey);
-    border-radius: 1vmin;
-    position: absolute;
-    z-index: 100;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
-  
-  .blue-button {
-    position: relative;
-    width: 100%;
-    background-color: rgb(35, 176, 198);
-    height: 100%;
-    box-sizing: border-box;
-    border: .2vmin solid var(--grey);
-    overflow: hidden;
-  }
-  
-  .blue-button .shadow {
+  .top {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgb(50, 137, 150);
-    border-radius: 50%;
-    top: 70%;
+    background-color: red;
+    bottom: 50%;
   }
   
-  .small-black-button {
-    position: absolute;
-    box-sizing: border-box;
-    height: 2vmin;
-    width: 7vmin;
-    border-radius: 1vmin;
-    border: .5vmin solid var(--grey);
-    background-color: rgb(102, 102, 102);
-    overflow: hidden;
-    z-index: 10;
-  }
-  
-  .small-black-button-1 {
-    top: 57.5%;
-    left: 15%;
-  }
-  
-  .small-black-button-2 {
-    top: 57.5%;
-    left: 30%;
-  }
-  
-  .small-black-button .shadow {
+  .bottom {
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 70%;
-    background-color: rgb(76, 79, 79);
-    border-radius: 50%;
+    background-color: white;
+    top: 50%;
+    z-index: -5;
   }
   
-  .grey-button-container {
-    width: 28%;
-    height: 9%;
-    right: 15%;
-    top: 65%;
+  .middle {
+    position: absolute;
     box-sizing: border-box;
-    border: .7vmin solid var(--grey);
-    border-radius: 1vmin;
-    position: absolute;
-    z-index: 100;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  
-  .grey-button {
-    position: relative;
-    width: 100%;
-    background-color: rgb(230, 230, 230);
-    height: 100%;
-    box-sizing: border-box;
-    border: .2vmin solid var(--grey);
-    overflow: hidden;
-  }
-  
-  .grey-button .shadow {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(170, 170, 170);
-    border-radius: 50%;
-    top: 70%;
-  }
-  
-  .yellow-button {
-    position: absolute;
-    height: 5vmin;
-    width: 5vmin;
-    box-sizing: border-box;
-    background-color: rgb(252, 238, 106);
-    top: 65.5%;
-    left: 15%;
-    z-index: 10;
-    border-radius: 50%;
-    border: .5vmin solid var(--grey);
-  }
-  
-  .wide-black-button {
-    width: 32.5%;
-    height: 10%;
-    right: 15%;
-    bottom: 12%;
-    background-color: rgb(102, 102, 102);
-    box-sizing: border-box;
-    border: .5vmin solid var(--grey);
-    border-radius: 1vmin;
-    position: absolute;
-    z-index: 100;
-    overflow: hidden;
-  }
-  
-  .wide-black-button .shadow {
-    position: absolute;
-    width: 100%;
-    height: 70%;
-    border-radius: 50%;
-    background-color: rgb(92, 92, 92);
-    top: 85%;
-  }
-  
-  .narrow-black-button {
-    width: 22.5%;
-    height: 10%;
-    left: 15%;
-    bottom: 12%;
-    background-color: rgb(102, 102, 102);
-    box-sizing: border-box;
-    border: .5vmin solid var(--grey);
-    border-radius: 1vmin;
-    position: absolute;
-    z-index: 100;
-    overflow: hidden;
-  }
-  
-  .narrow-black-button .shadow {
-    position: absolute;
-    width: 100%;
-    height: 70%;
-    border-radius: 50%;
-    background-color: rgb(92, 92, 92);
-    top: 85%;
-  }
-  
-  .inside {
-    box-sizing: border-box;
-    position: absolute;
-    bottom: -1vmin;
-    left: -1vmin;
-    height: 65vmin;
-    width: 60vmin;
-    border-bottom-left-radius: 5vmin;
-    border-bottom-right-radius: 5vmin;
-    border: 1vmin solid rgb(88, 72, 74);
-    background-color: rgb(232, 72, 72);
-    transform-origin: right;
-  }
-  
-  .trapezoid {
-    box-sizing: border-box;
-    position: absolute;
-    height: 9vmin;
-    width: 20vmin;
-    right: -1vmin;
-    top: -8vmin;
-    border-top: .8vmin solid rgb(88, 72, 74);
-    border-right: 1vmin solid rgb(88, 72, 74);
-    background-color: rgb(232, 72, 72);
-  }
-  
-  .diagonal {
-    box-sizing: border-box;
-    position: absolute;
-    height: 9vmin;
-    width: 20vmin;
-    right: 12.9vmin;
-    transform: rotate(-45deg);
-    top: -2.2vmin;
-    border-top: 1vmin solid rgb(88, 72, 74);
-    background-color: rgb(232, 72, 72);
-  }
-  
-  .cover {
-    box-sizing: border-box;
-    position: absolute;
-    height: 10vmin;
-    width: 90%;
-    background-color: rgb(232, 72, 72);
-    top: -.1vmin;
-    left: 0;
-    z-index: 5;
-  }
-  
-  .flap-inside-smaller {
-    box-sizing: border-box;
-    position: absolute;
+    width: 50vmin;
+    height: 3vmin;
+    background-color: black;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 90%;
-    width: 90%;
-    border-bottom-left-radius: 5vmin;
-    border-bottom-right-radius: 5vmin;
-    border: 1vmin solid rgb(88, 72, 74);
-    background-color: rgb(232, 72, 72);
-    transform-origin: right;
-    transition: all 300ms linear;
-    z-index: 6;
+    box-shadow: 0 0 1vmin .1vmin grey inset;
+    z-index: -1;
   }
   
-  .inside-smaller {
-    box-sizing: border-box;
+  .middle-large {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 90%;
-    width: 90%;
-    border-bottom-left-radius: 5vmin;
-    border-bottom-right-radius: 5vmin;
-    border: 1vmin solid rgb(88, 72, 74);
-    background-color: rgb(232, 72, 72);
-    transform-origin: right;
-    transition: all 300ms linear;
-    z-index: 6;
-  }
-  
-  .trapezoid-smaller {
-    box-sizing: border-box;
-    position: absolute;
-    height: 9vmin;
-    width: 14vmin;
-    right: -1vmin;
-    top: -8vmin;
-    border-top: .8vmin solid rgb(88, 72, 74);
-    border-right: 1vmin solid rgb(88, 72, 74);
-    background-color: rgb(232, 72, 72);
-  }
-  
-  .diagonal-smaller {
-    box-sizing: border-box;
-    position: absolute;
-    height: 5.4vmin;
     width: 18vmin;
-    right: 8.5vmin;
-    top: -2.3vmin;
-    transform: rotate(-45deg);
-    border-top: 1vmin solid rgb(88, 72, 74);
-    background-color: rgb(232, 72, 72);
-  /*   z-index: 20; */
-  }
-  
-  .cover-smaller {
-    box-sizing: border-box;
-    position: absolute;
-    height: 10vmin;
-    width: 80%;
-    background-color: rgb(232, 72, 72);
-    top: -.1vmin;
-    left: 0;
-    z-index: 5;
-  }
-  
-  .screen {
-     box-sizing: border-box;
-    position: absolute;
-    width: 80%;
-    height: 50%;
-    left: 50%;
-    top: 33%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-  }
-  
-  .screen-outer {
-    box-sizing: border-box;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(230, 230, 230);
-    z-index: 10;
-    border: 1vmin solid rgb(88, 72, 74);
-    border-radius: 1vmin;
-  }
-  
-  .screen-inner {
-    position: absolute;
-    width: 75%;
-    height: 65%;
-    background-color: rgb(77, 77, 77);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .screen-on {
-    position: absolute;
-    width: 1%;
-    height: 1%;
-    background-color: rgb(0, 215, 252);
+    height: 18vmin;
     border-radius: 50%;
+    background-color: black;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
-
-  .loading-ball {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 100%;
-    width: 100%;
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .loading-ball img {
-    height: 50%;
-    filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(330deg) brightness(100%) contrast(102%);
+    box-shadow: 0 0 1vmin .3vmin grey inset;
   }
   
-  .screen-outer .dots {
+  .cover {
     position: absolute;
-    width: 100%;
-    top: 0;
-    height: 4.5vmin;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .screen-outer .dots .dot {
-    box-sizing: border-box;
-    height: 2vmin;
-    width: 2vmin;
-    border-radius: 50%;
-    background-color: rgb(230, 230, 230);
-    border: .5vmin solid var(--grey);
-    margin: auto 1vmin;
-  }
-  
-  .screen-outer .red-button {
-    box-sizing: border-box;
-    position: absolute;
+    width: 17.9vmin;
     height: 3vmin;
-    width: 3vmin;
-    background-color: var(--red);
-    border-radius: 50%;
-    bottom: .5vmin;
-    left: 5vmin;
-    border: .5vmin solid rgb(88, 72, 74);
+    border-radius: 8%;
+    background-color: black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   
-  .screen-outer .bars-container {
-    box-sizing: border-box;
+  .middle-med {
     position: absolute;
-    height: 3vmin;
-    width: 3vmin;
-    bottom: .5vmin;
-    right: 5vmin;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .screen-outer .bars-container .bar {
-    width: 100%;
-    background-color: var(--grey);
-    height: .6vmin;
-    border-radius: 2vmin;
-  }
-  
-  .screen-corner {
-    position: absolute;
-    background-color: rgb(232, 72, 72);
-    width: 20%;
-    height: 20%;
-    z-index: 11;
-    bottom: -7.5%;
-    left: -7%;
-    transform: rotate(45deg);
-    border-top: 1vmin solid rgb(88, 72, 74);
-  }
-  
-  .inside .black-round-button {
-    position: absolute;
-    box-sizing: border-box;
-    height: 7vmin;
-    width: 7vmin;
-    border-radius: 50%;
-    bottom: 20%;
-    left: 12%;
-    border: .5vmin solid var(--grey);
-    background-color: rgb(102, 102, 102);
-  }
-  
-  .small-red-button {
-    position: absolute;
-    box-sizing: border-box;
-    height: 2vmin;
-    width: 7vmin;
-    border-radius: 1vmin;
-    bottom: 28%;
-    left: 30%;
-    border: .5vmin solid var(--grey);
-    background-color: var(--red);
-    overflow: hidden;
-  }
-  
-  .small-red-button .shadow {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 70%;
-    background-color: rgb(134, 80, 79);
-    border-radius: 50%;
-  }
-  
-  .small-blue-button {
-    position: absolute;
-    box-sizing: border-box;
-    height: 2vmin;
-    width: 7vmin;
-    border-radius: 1vmin;
-    bottom: 28%;
-    left: 47%;
-    border: .5vmin solid var(--grey);
-    background-color: rgb(51, 160, 205);
-    overflow: hidden;
-  }
-  
-  .small-blue-button .shadow {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 70%;
-    background-color: rgb(75, 90, 95);
-    border-radius: 50%;
-  }
-  
-  .green-rectangle {
-    box-sizing: border-box;
-    width: 14vmin;
-    height: 6vmin;
-    position: absolute;
-    border-radius: 1vmin;
-    border: .5vmin solid var(--grey);
-    bottom: 10%;
-    left: 30%;
-    background-color: rgb(34, 181, 152);
-    overflow: hidden;
-  }
-  
-  .green-rectangle .shadow {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(42, 161, 137);
-    top: 70%;
-    border-radius: 50%;
-  }
-  
-  .d-pad {
-    position: absolute;
-    bottom: 8%;
-    right: 10%;
-    height: 13vmin;
     width: 13vmin;
-    box-sizing: border-box;
+    height: 13vmin;
+    border-radius: 50%;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 1vmin .2vmin grey;
   }
   
-  .horizontal {
+  .middle-sm {
+    position: absolute;
+    width: 9vmin;
+    height: 9vmin;
+    border-radius: 50%;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: .2vmin .2vmin .5vmin .1vmin black;
+  }
+  
+  .shadow {
+    position: relative;
+    margin: auto auto 0 auto;
+    width: 50vmin;
+    height: 50vmin;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0) 50%);
+    transform: translate(0, 25vmin) rotatex(85deg);
+    z-index: -1;
+    // animation: shadowSlide 2900ms;
+  }
+  
+  .rotate {
     position: absolute;
     width: 100%;
-    height: 40%;
-    background-color: rgb(102, 102, 102);
-    top: 50%;
-    left: 0;
-    transform: translate(0, -50%);
-    border: .5vmin solid var(--grey);
-    border-radius: 1vmin;
-    box-sizing: border-box;
-  }
-  
-  .vertical {
-    position: absolute;
-    width: 40%;
     height: 100%;
-    background-color: rgb(102, 102, 102);
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-    border: .5vmin solid var(--grey);
-    border-radius: 1vmin;
-    box-sizing: border-box;
+    // animation: spin 3000ms;
   }
   
-  .d-pad .center {
-    position: absolute;
-    height: 80%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(102, 102, 102);
-    width: 33%;
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
   
-  .d-pad .center .circle {
-    position: absolute;
-    width: 3vmin;
-    height: 3vmin;
-    box-sizing: border-box;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 .5vmin .5vmin var(--grey) inset;
+  @keyframes slideIn {
+    0% { transform: translate(-100vw, -50%)}
+    100% { transform: translate(-50%, -50%) }
+  }
+  
+  @keyframes shadowSlide {
+    0% {  transform: translate(-100vw, 25vmin) rotatex(85deg) }
+    100% {   transform: translate(0, 25vmin) rotatex(85deg) }
   }
