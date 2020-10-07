@@ -14,8 +14,8 @@ function Intro() {
         gsap.fromTo(container, {x: '-100vw'}, {x:0, duration: 3, delay: 1.5});
         gsap.fromTo(shadow, {x: '-100vw'}, {x:0, duration: 3, delay: 1.5});
         gsap.fromTo(rotate, {rotate: 0}, {rotate: 360, duration: 3, delay: 1.5});
-        gsap.to(intro, {opacity: 0, duration: .5, delay: 4.5});
-        gsap.to(intro, {y: '-100vh', duration: .1, delay: 5});
+        gsap.to(intro, {opacity: 0, duration: .5, delay: 5});
+        gsap.to(intro, {y: '-100vh', duration: .1, delay: 5.5});
     }, [])
     
 
